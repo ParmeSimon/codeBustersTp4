@@ -3,7 +3,7 @@ import { AuthProvider, useAuth } from './hooks/useAuth';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
-
+import LoginPage from './pages/auth/LoginPage';
 // Pages communes
 import Home from './pages/Home';
 
