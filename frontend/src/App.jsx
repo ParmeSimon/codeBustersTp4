@@ -6,7 +6,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 // Pages communes
 import Home from './pages/Home';
-
+import LoginPage from './pages/auth/LoginPage';
 function AppRoutes() {
   const { isAuthenticated, isStudent, isCompany } = useAuth();
 
