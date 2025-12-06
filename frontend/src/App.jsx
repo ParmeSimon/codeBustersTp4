@@ -10,6 +10,7 @@ import { AuthProvider, useAuth } from "./hooks/useAuth";
 import ProtectedRoute from "./components/ProtectedRoute";
 import StudentProfilePage from "./pages/student/StudentProfilePage";
 import LoginPage from "./pages/auth/LoginPage";
+import StudentOffersPage from "./pages/student/StudentOffersPage";
 
 // Pages communes
 // import Home from './pages/Home';
@@ -33,10 +34,19 @@ function AppRoutes() {
 
           {/* Routes pour les étudiants */}
           <Route
-            path="/student/profile"
+            path="/etudiant/profil"
             element={
               // <ProtectedRoute requiredRole="STUDENT">
               <StudentProfilePage />
+              // </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/etudiant/offres"
+            element={
+              // <ProtectedRoute requiredRole="STUDENT">
+              <StudentOffersPage />
               // </ProtectedRoute>
             }
           />

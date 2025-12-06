@@ -1,0 +1,289 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #f4f4f4, #b497cd);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+body img {
+  display: flex;
+  justify-content: center;
+}
+
+.studentProfile {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+/* =================== Navigation =================== */
+.nav {
+  margin-top: 20px;
+}
+
+.nav ul {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.nav li {
+  list-style-type: none;
+}
+
+.navLink {
+  display: block;
+  background-color: var(--color-secondary);
+  border: 2px solid var(--color-primary);
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 8px 32px;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease, transform 0.3s ease;
+}
+
+.navLink:hover {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+}
+
+.activeLink {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+}
+
+/* =================== Profile =================== */
+/* Image / Name / Mail */
+.profileCard {
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 40px 60px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin-top: 2%;
+  position: relative;
+}
+
+.icon {
+  border: 2px solid var(--color-primary);
+  border-radius: 50%;
+  padding: 20px;
+}
+
+.profileCard button {
+  color: var(--color-secondary);
+  background-color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: 100%;
+  font-size: 20px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 4%;
+  top: 10%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease, transform 0.3s ease;
+}
+
+.profileCard button:hover {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+}
+
+/* Links CV / Github / Portfolio */
+.profileLinks {
+  width: 100%;
+  display: flex;
+  gap: 16px;
+}
+
+.profileLink {
+  flex: 1;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: none;
+  background: #f4f4f4;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Skills */
+.skillsCard {
+  width: 100%;
+  background: #f4f4f4;
+  padding: 20px 24px;
+  border-radius: 16px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.skillsTitle {
+  margin-bottom: 12px;
+  border-left: 4px solid var(--color-primary);
+  padding-left: 8px;
+}
+
+.skillsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skillTag {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--color-primary);
+  font-size: 14px;
+}
+
+.skillTag:hover {
+  background-color: var(--color-primary);
+  color: #f4f4f4;
+}
+
+/* =================== Popup edit profile =================== */
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.popupCard {
+  background: var(--color-secondary);
+  padding: 32px;
+  border-radius: 16px;
+  max-width: 600px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.popupCard form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 80%;
+}
+
+.popupCard form .formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.popupCard form .formGroup input,
+.popupCard form .formGroup textarea {
+  border: 2px solid gray;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.popupCard form .formGroup input:focus,
+.popupCard form .formGroup textarea:focus {
+  outline: none;
+  border: 2px solid var(--color-primary);
+}
+
+.popupCard form .formGroup textarea {
+  max-height: 120px;
+  max-width: 100%;
+}
+
+.popupCard form .popupActions {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.popupCard form .saveBtn {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  border: 2px solid var(--color-primary);
+  border-radius: 12px;
+  padding: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.popupCard form .saveBtn:hover {
+  background: #a47ac4;
+  border-color: #a47ac4;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(164, 122, 196, 0.4);
+}
+
+.popupCard form .cancelBtn {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: 12px;
+  padding: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.popupCard form .cancelBtn:hover {
+  background: rgba(180, 151, 205, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(180, 151, 205, 0.3);
+}
+
+/* =================== Offers =================== */
+.studentOffer {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+/* =================== Responsive =================== */
+/* Tablet */
+@media screen and (max-width: 768px) {
+  /* Profile */
+
+  /* Links CV / Github / Portfolio */
+  .profileLinks {
+    flex-direction: column;
+  }
+
+  .popupCard form {
+    width: 100%;
+  }
+}

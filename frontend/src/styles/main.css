@@ -23,5 +23,11 @@
   flex: 1;
   display: flex;
   justify-content: center;
-  padding: 40px 16px;
+  padding: 40px 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .app-content {
+    min-height: 100dvh;
+  }
 }

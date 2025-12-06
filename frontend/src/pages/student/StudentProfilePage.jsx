@@ -1,5 +1,5 @@
-import style from "../../styles/StudentProfilePage.module.css";
-import Logo from "../../assets/logo.png";
+import style from "../../styles/student.module.css";
+import { useState } from "react";
 
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
@@ -7,14 +7,23 @@ import {
   DocumentValidationIcon,
   GithubIcon,
   BrowserIcon,
+  Settings02Icon,
 } from "@hugeicons/core-free-icons";
+import PopupEditProfileStudent from "./widgets/PopupEditProfileStudent";
+import HeaderStudent from "./widgets/HeaderStudent";
 
 function StudentProfilePage() {
+  const [showPopup, setShowPopup] = useState(false);
+
   return (
     <div className={style.studentProfile}>
-      <img src={Logo} />
+      <HeaderStudent />
       {/* Profil */}
       <section className={style.profileCard}>
+        <button type="button" onClick={() => setShowPopup(true)}>
+          <HugeiconsIcon icon={Settings02Icon} />
+        </button>
+
         <div className={style.icon}>
           <HugeiconsIcon icon={UserIcon} size={36} />
         </div>
@@ -50,6 +59,11 @@ function StudentProfilePage() {
           <span className={style.skillTag}>Docker</span>
         </div>
       </section>
+
+      {/* Popup pour modifier le profil */}
+      {showPopup && (
+        <PopupEditProfileStudent onClose={() => setShowPopup(false)} />
+      )}
     </div>
   );
 }
