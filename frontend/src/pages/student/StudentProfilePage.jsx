@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { HugeiconsIcon } from "@hugeicons/react";
+import { studentService } from "../../services/api.js";
 import {
   UserIcon,
   DocumentValidationIcon,
@@ -14,6 +15,9 @@ import PopupEditProfileStudent from "./widgets/PopupEditProfileStudent";
 import HeaderStudent from "./widgets/HeaderStudent";
 
 function StudentProfilePage() {
+  const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   const { logout } = useAuth();
   const navigate = useNavigate();
@@ -27,6 +31,25 @@ function StudentProfilePage() {
       };
     }
   }, [showPopup]);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const data = await studentService.getProfile();
+        setProfile(data);
+      } catch (err) {
+        setError(err.message || "Impossible de charger le profil");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProfile();
+  }, []);
+
+  if (loading) return <p>Chargement...</p>;
+  if (error) return <p>{error}</p>;
+  if (!profile) return <p>Aucun profil trouvé.</p>;
   
   const handleLogout = () => {
     logout();
@@ -46,21 +69,21 @@ function StudentProfilePage() {
           <HugeiconsIcon icon={UserIcon} size={36} />
         </div>
 
-        <h2 className={style.profileName}>Étudiant Deux</h2>
-        <p className={style.profileEmail}>student2.group2@ekod.fr</p>
+        <h2 className={style.profileName}>{profile.name}</h2>
+        <p className={style.profileEmail}>{profile.email}</p>
       </section>
 
       {/* Liens CV / Github / Portfolio */}
       <section className={style.profileLinks}>
-        <a className={style.profileLink}>
+        <a href={profile.cvLink} target="_blank" className={style.profileLink}>
           <HugeiconsIcon icon={DocumentValidationIcon} color="#b497cd" />
           CV
         </a>
-        <a className={style.profileLink}>
+        <a href={profile.githubLink} target="_blank" className={style.profileLink}>
           <HugeiconsIcon icon={GithubIcon} color="#b497cd" />
           Github
         </a>
-        <a className={style.profileLink}>
+        <a href={profile.portfolioLink} target="_blank" className={style.profileLink}>
           <HugeiconsIcon icon={BrowserIcon} color="#b497cd" />
           Portfolio
         </a>
@@ -71,10 +94,9 @@ function StudentProfilePage() {
         <h3 className={style.skillsTitle}>Mes compétences</h3>
 
         <div className={style.skillsList}>
-          <span className={style.skillTag}>Python</span>
-          <span className={style.skillTag}>Django</span>
-          <span className={style.skillTag}>PostgreSQL</span>
-          <span className={style.skillTag}>Docker</span>
+          {profile.skills?.map((skill) => (
+            <span key={skill} className={style.skillTag}>{skill}</span>
+          ))}
         </div>
       </section>
       <button onClick={handleLogout} className={style.disconnectButton}>Déconnexion</button>
