@@ -1,12 +1,10 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './hooks/useAuth';
 import Header from './components/Header';
-import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
-
-// Pages communes
-import Home from './pages/Home';
 import LoginPage from './pages/auth/LoginPage';
+import Home from './components/Home';
+// Pages communes
 function AppRoutes() {
   const { isAuthenticated, isStudent, isCompany } = useAuth();
 
@@ -70,7 +68,6 @@ function AppRoutes() {
           <Route path="*" element={<>{/* à implémenter */}</>} />
         </Routes>
       </main>
-      <Footer />
     </div>
   );
 }
