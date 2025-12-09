@@ -1,6 +1,7 @@
 import style from "../../styles/student.module.css";
 import { useState } from "react";
-
+import { useAuth } from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   UserIcon,
@@ -14,7 +15,13 @@ import HeaderStudent from "./widgets/HeaderStudent";
 
 function StudentProfilePage() {
   const [showPopup, setShowPopup] = useState(false);
+  const { logout } = useAuth();
+  const navigate = useNavigate();
 
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
   return (
     <div className={style.studentProfile}>
       <HeaderStudent />
@@ -59,6 +66,7 @@ function StudentProfilePage() {
           <span className={style.skillTag}>Docker</span>
         </div>
       </section>
+      <button onClick={handleLogout} className={style.disconnectButton}>Déconnexion</button>
 
       {/* Popup pour modifier le profil */}
       {showPopup && (

@@ -9,7 +9,7 @@ import { AuthProvider, useAuth } from "./hooks/useAuth";
 // import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
 import StudentProfilePage from "./pages/student/StudentProfilePage";
-import LoginPage from "./pages/auth/LoginPage";
+import LoginPage from "./pages/auth/page";
 import StudentOffersPage from "./pages/student/StudentOffersPage";
 import StudentDetailsOfferPage from "./pages/student/StudentDetailsOfferPage";
 import CompanyOffersPage from "./pages/company/CompanyOffersPage";
@@ -19,7 +19,7 @@ import CompanyProfilePage from "./pages/company/CompanyProfilePage";
 // import Home from './pages/Home';
 
 function AppRoutes() {
-  const { isAuthenticated, isStudent, isCompany } = useAuth();
+  const { isAuthenticated, isStudent, isCompany, user } = useAuth();
 
   return (
     <div className="app-content">
@@ -27,7 +27,20 @@ function AppRoutes() {
       <main className="page-content">
         <Routes>
           {/* Routes publiques */}
-          {/* <Route path="/" element={<Home />} /> */}
+          <Route
+            path="/"
+            element={
+              isAuthenticated ? (
+                user?.role === 'STUDENT' ? (
+                  <Navigate to="/etudiant/profil" replace />
+                ) : (
+                  <Navigate to="/entreprise/profil" replace />
+                )
+              ) : (
+                <Navigate to="/login" replace />
+              )
+            }
+          />
           <Route
             path="/login"
             element={

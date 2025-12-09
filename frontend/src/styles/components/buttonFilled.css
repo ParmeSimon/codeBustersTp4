@@ -1,0 +1,11 @@
+/* Augmentation de la spécificité pour surcharger Material-UI */
+.btn-filled.MuiButton-root {
+    background-color: var(--color-btn-primary);
+    color: white;
+    width: 100%;
+}
+
+.btn-filled.MuiButton-root:hover {
+    background-color: var(--color-btn-primary);
+    opacity: 0.9;
+}
