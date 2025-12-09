@@ -11,6 +11,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import StudentProfilePage from "./pages/student/StudentProfilePage";
 import LoginPage from "./pages/auth/LoginPage";
 import StudentOffersPage from "./pages/student/StudentOffersPage";
+import StudentDetailsOfferPage from "./pages/student/StudentDetailsOfferPage";
 
 // Pages communes
 // import Home from './pages/Home';
@@ -47,6 +48,15 @@ function AppRoutes() {
             element={
               // <ProtectedRoute requiredRole="STUDENT">
               <StudentOffersPage />
+              // </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/etudiant/details-offre"
+            element={
+              // <ProtectedRoute requiredRole="STUDENT">
+              <StudentDetailsOfferPage />
               // </ProtectedRoute>
             }
           />

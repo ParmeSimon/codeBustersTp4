@@ -10,9 +10,7 @@ import 'swiper/css/navigation';
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   Search01Icon,
-  Location06Icon,
-  ArrowLeft01Icon,
-  ArrowRight01Icon
+  Location06Icon
 } from "@hugeicons/core-free-icons";
 
 function StudentOffersPage() {
