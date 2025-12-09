@@ -506,6 +506,91 @@ input[type="search"]::-webkit-search-cancel-button {
   padding: 12px;
   border: none;
   color: var(--color-secondary);
+  cursor: pointer;
+}
+
+/* =================== Popup application =================== */
+.popupCardApplication {
+  background: var(--color-secondary);
+  padding: 32px;
+  border-radius: 16px;
+  max-width: 600px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.popupCardApplication form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 80%;
+}
+
+.popupCardApplication form .formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.popupCardApplication form .formGroup textarea {
+  border: 2px solid gray;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.popupCardApplication form .formGroup textarea:focus {
+  outline: none;
+  border: 2px solid var(--color-primary);
+}
+
+.popupCardApplication form .formGroup textarea {
+  min-height: 200px;
+}
+
+.popupCardApplication form .popupActions {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.popupCardApplication form .applicationBtn {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  border: 2px solid var(--color-primary);
+  border-radius: 12px;
+  padding: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.popupCardApplication form .applicationBtn:hover {
+  background: #a47ac4;
+  border-color: #a47ac4;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(164, 122, 196, 0.4);
+}
+
+.popupCardApplication form .cancelBtn {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: 12px;
+  padding: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.popupCardApplication form .cancelBtn:hover {
+  background: rgba(180, 151, 205, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(180, 151, 205, 0.3);
 }
 
 /* =================== Responsive =================== */

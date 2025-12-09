@@ -1,5 +1,5 @@
 import style from "../../styles/student.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
@@ -15,6 +15,16 @@ import HeaderStudent from "./widgets/HeaderStudent";
 function StudentProfilePage() {
   const [showPopup, setShowPopup] = useState(false);
 
+  useEffect(() => {
+    if (showPopup) {
+      const previousOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = previousOverflow || 'auto';
+      };
+    }
+  }, [showPopup]);
+  
   return (
     <div className={style.studentProfile}>
       <HeaderStudent />

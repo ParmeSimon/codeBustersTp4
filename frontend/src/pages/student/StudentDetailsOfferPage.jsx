@@ -1,10 +1,24 @@
+import { useState, useEffect } from 'react';
 import style from '../../styles/student.module.css';
 import HeaderStudent from './widgets/HeaderStudent';
 
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowLeft01Icon, WorkIcon, Location06Icon } from "@hugeicons/core-free-icons";
+import PopupApplication from './widgets/PopupApplication';
 
 function StudentDetailsOfferPage() {
+    const [showPopup, setShowPopup] = useState(false);
+
+    useEffect(() => {
+        if (showPopup) {
+        const previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.body.style.overflow = previousOverflow || 'auto';
+        };
+        }
+    }, [showPopup]);
+        
     return (
         <div className={style.studentDetailsOffer}>
             <HeaderStudent />
@@ -42,10 +56,16 @@ function StudentDetailsOfferPage() {
                         </div>
                     </div>
                 </div>
-                <button>Postuler</button>
+                <button type="button" onClick={() => setShowPopup(true)}>Postuler</button>
             </div>
 
+            {/* Popup pour modifier le profil */}
+            {showPopup && (
+                <PopupApplication onClose={() => setShowPopup(false)} />
+            )}
         </div>
+
+
     );
 }
 
