@@ -49,7 +49,7 @@ function StudentOffersPage() {
 
           {/* Localisation */}
           <div className={style.inputWrapper}>
-            <input type="search" placeholder="Localisation" />
+            <input type="search" placeholder="Localisation" className={style.localisation} />
             <HugeiconsIcon icon={Location06Icon} />
           </div>
         </div>
