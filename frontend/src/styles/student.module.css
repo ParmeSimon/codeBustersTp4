@@ -281,11 +281,24 @@ body img {
   align-items: center;
 }
 
-.studentOffer .formSearch {
-  width: 550px;
+.studentOffer .form .inputWrapper {
   border: 2px solid var(--color-primary);
   border-radius: 10px;
+  background-color: var(--color-secondary);
+  display: flex;
+  align-items: center;
   padding: 10px;
+}
+
+.studentOffer .formSearch {
+  width: 550px;
+  border: none;
+  background-color: var(--color-secondary);
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .studentOffer .formSearch:focus, .studentOffer .subfilter input:focus {
@@ -297,7 +310,11 @@ body img {
   gap: 20px;
 }
 
-.studentOffer .subfilter input, .studentOffer .subfilter select {
+.studentOffer .subfilter input {
+  border: none;
+}
+
+.studentOffer .subfilter select {
   width: 250px;
   border: 2px solid var(--color-primary);
   border-radius: 10px;

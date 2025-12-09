@@ -26,7 +26,7 @@ function StudentOffersPage() {
       {/* Filters */}
       <form className={style.form}>
         {/* Search */}
-        <div className={style.search}>
+        <div className={style.inputWrapper}>
           <input type="search" placeholder="Rechercher un poste" className={style.formSearch} />
           <HugeiconsIcon icon={Search01Icon} />
         </div>
@@ -48,9 +48,9 @@ function StudentOffersPage() {
           </select>
 
           {/* Localisation */}
-          <div className={style.localisation}>
+          <div className={style.inputWrapper}>
             <input type="search" placeholder="Localisation" />
-          <HugeiconsIcon icon={Location06Icon} />
+            <HugeiconsIcon icon={Location06Icon} />
           </div>
         </div>
       </form>
