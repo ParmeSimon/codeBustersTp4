@@ -11,6 +11,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import StudentProfilePage from "./pages/student/StudentProfilePage";
 import LoginPage from "./pages/auth/LoginPage";
 import StudentOffersPage from "./pages/student/StudentOffersPage";
+import CompanyOffersPage from "./pages/company/CompanyOffersPage";
+import CompanyProfilePage from "./pages/company/CompanyProfilePage";
 
 // Pages communes
 // import Home from './pages/Home';
@@ -54,12 +56,22 @@ function AppRoutes() {
           {/* ... */}
 
           {/* Routes pour les entreprises */}
+
           <Route
-            path="/my-offers"
+            path="entreprise/profil"
             element={
-              <ProtectedRoute requiredRole="COMPANY">
-                {/* page mes offres */}
-              </ProtectedRoute>
+              // <ProtectedRoute requiredRole="COMPANY">
+              <CompanyProfilePage/>
+              // </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="entreprise/offres"
+            element={
+              // <ProtectedRoute requiredRole="COMPANY">
+              <CompanyOffersPage />
+              // </ProtectedRoute>
             }
           />
 
