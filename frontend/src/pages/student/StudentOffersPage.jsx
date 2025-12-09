@@ -1,12 +1,11 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import style from "../../styles/student.module.css";
 import HeaderStudent from "./widgets/HeaderStudent";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
@@ -56,27 +55,52 @@ function StudentOffersPage() {
       </form>
 
       {/* Offers */}
-      {/* <div>
-        <button ref={prevRefOffer}><HugeiconsIcon icon={ArrowLeft01Icon} /></button>
-        <button ref={nextRefOffer}><HugeiconsIcon icon={ArrowRight01Icon} /></button>
-        <Swiper
-          pagination={true}
-          keyboard={true}
-          modules={[Navigation, Pagination]}
-          slidesPerView={2}
-          spaceBetween={30}
-          navigation={{
-            prevE: prevRefOffer.current,
-            nextEl: nextRefOffer.current
-          }}
-          loop={true}
-          className="mySwiper"
-        >
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-      </Swiper>
-      </div> */}
+      <div className={style.offers}>
+        <div className={style.offer}>
+          <img src="https://images.radio-canada.ca/v1/ici-regions/16x9/espace-travail-partage-bureaux.jpg"/>
+          <div className={style.detail}>
+            <h2>Développeur Python/Django - Lyon</h2>
+            <p>CDI pour un développeur Python expérimenté. Travail sur des applications web avec Django et PostgreSQL.</p>
+            <button>Voir l'offre</button>
+          </div>
+        </div>  
+
+        <div className={style.offer}>
+          <img src="https://images.radio-canada.ca/v1/ici-regions/16x9/espace-travail-partage-bureaux.jpg" />
+          <div className={style.detail}>
+            <h2>Développeur Python/Django - Lyon</h2>
+            <p>CDI pour un développeur Python expérimenté. Travail sur des applications web avec Django et PostgreSQL.</p>
+            <button>Voir l'offre</button>
+          </div>
+        </div>
+
+        <div className={style.offer}>
+          <img src="https://images.radio-canada.ca/v1/ici-regions/16x9/espace-travail-partage-bureaux.jpg" />
+          <div className={style.detail}>
+            <h2>Développeur Python/Django - Lyon</h2>
+            <p>CDI pour un développeur Python expérimenté. Travail sur des applications web avec Django et PostgreSQL.</p>
+            <button>Voir l'offre</button>
+          </div>
+        </div>
+
+        <div className={style.offer}>
+          <img src="https://images.radio-canada.ca/v1/ici-regions/16x9/espace-travail-partage-bureaux.jpg" />
+          <div className={style.detail}>
+            <h2>Développeur Python/Django - Lyon</h2>
+            <p>CDI pour un développeur Python expérimenté. Travail sur des applications web avec Django et PostgreSQL.</p>
+            <button>Voir l'offre</button>
+          </div>
+        </div>
+
+        <div className={style.offer}>
+          <img src="https://images.radio-canada.ca/v1/ici-regions/16x9/espace-travail-partage-bureaux.jpg" />
+          <div className={style.detail}>
+            <h2>Développeur Python/Django - Lyon</h2>
+            <p>CDI pour un développeur Python expérimenté. Travail sur des applications web avec Django et PostgreSQL.</p>
+            <button>Voir l'offre</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

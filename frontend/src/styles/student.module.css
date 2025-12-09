@@ -312,7 +312,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .studentOffer .subfilter input {
   border: none;
-  background-color: var(--);
+  background-color: var(--color-secondary);
 }
 
 .studentOffer .subfilter select {
@@ -322,7 +322,93 @@ input[type="search"]::-webkit-search-cancel-button {
   padding: 10px;
 }
 
+.studentOffer .subfilter select:focus {
+  outline: none;
+}
+
+/* OFFERS */
+.studentOffer .offers {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 0 12px;
+}
+
+
+.studentOffer .offers button {
+  border: none;
+  background-color: inherit;
+  color: var(--color-primary);
+}
+
+.offers .mySwiper {
+  background-color: var(--color-secondary);
+  border-radius: 24px;
+  position: relative;
+}
+
+.studentOffer .offers .prevRefOffer {
+  position: absolute;
+  z-index: 50;
+  left: 4%;
+  background-color: white;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.studentOffer .offers .nextRefOffer {
+  position: absolute;
+  z-index: 50;
+  right: 4%;
+  background-color: white;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.studentOffer .offers .offer {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 10px;
+  background-color: var(--color-secondary);
+  border-radius: 10px;
+}
+
+.studentOffer .offers .offer .detail {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.studentOffer .offers .offer img {
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+.studentOffer .offers .offer button {
+  width: 100%;
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  padding: 10px 12px;
+  border-radius: 5px;
+}
+
 /* =================== Responsive =================== */
+/* Desktop */
+@media screen and (max-width: 1200px) {
+  /* Offers */
+
+}
+
 /* Tablet */
 @media screen and (max-width: 768px) {
   /* Profile */
