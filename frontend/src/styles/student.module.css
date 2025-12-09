@@ -163,6 +163,24 @@ body img {
   color: #f4f4f4;
 }
 
+.disconnectButton {
+  background-color: var(--color-btn-primary);
+  color: var(--color-secondary);
+  border:none;
+  border-radius: 12px;
+  padding: 15px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.disconnectButton:hover {
+  background-color: #a47ac4;
+  transform: translateY(-2px);
+}
+
 /* =================== Popup edit profile =================== */
 .popupOverlay {
   position: fixed;
@@ -301,7 +319,8 @@ input[type="search"]::-webkit-search-cancel-button {
   appearance: none;
 }
 
-.studentOffer .formSearch:focus, .studentOffer .subfilter input:focus {
+.studentOffer .formSearch:focus,
+.studentOffer .subfilter input:focus {
   outline: none;
 }
 
