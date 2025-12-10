@@ -1,126 +1,101 @@
-/* =================== Offers =================== */
-.offersContainer {
+.offers-container {
     width: 100%;
     max-width: 1100px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 24px;
 }
-.viewOfferButton{
-    cursor:pointer;
-}
 
-.offersContainer .form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-}
-
-.offersContainer .form .inputWrapper {
-    border: 2px solid var(--color-primary);
-    border-radius: 10px;
-    background-color: var(--color-secondary);
-    display: flex;
-    align-items: center;
-    padding: 10px;
-}
-
-.offersContainer .formSearch {
-    width: 550px;
-    border: none;
-    background-color: var(--color-secondary);
-}
-
-input[type="search"]::-webkit-search-cancel-button {
-    -webkit-appearance: none;
-    appearance: none;
-}
-
-.offersContainer .formSearch:focus,
-.studentOffer .subfilter input:focus {
-    outline: none;
-}
-
-.offersContainer .subfilter {
-    display: flex;
-    gap: 20px;
-}
-
-.offersContainer .subfilter input {
-    border: none;
-    background-color: var(--color-secondary);
-}
-
-.offersContainer .subfilter select {
-    width: 250px;
-    border: 2px solid var(--color-primary);
-    border-radius: 10px;
-    padding: 10px;
-}
-
-.offersContainer .subfilter select:focus {
-    outline: none;
-}
-
-/* OFFERS */
-.offersContainer .offers {
+.offers-container .offers {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
     padding: 0 12px;
+    align-items: stretch;
 }
 
-
-.offersContainer .offers button {
-    border: none;
-    background-color: inherit;
-    color: var(--color-primary);
-}
-
-.offersContainer .offers .offer {
+.offers-container .offers .offer {
     display: flex;
     flex-direction: column;
     justify-content: start;
     gap: 10px;
     background-color: var(--color-secondary);
     border-radius: 10px;
+    height: 100%;
 }
 
-.offersContainer .offers .offer .detail {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.offersContainer .offers .offer img {
+.offers-container .offers .offer img {
     width: 100%;
     height: 200px;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
 }
 
-.offersContainer .offers .offer button {
-    width: 100%;
+.offers-container .offers .offer .detail {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.offers-container .offers .offer .detail p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;       
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;   
+    max-height: 4em;  
+}
+
+.offers-container .offers .offer .detail .view-offer-btn {
     background-color: var(--color-primary);
     color: var(--color-secondary);
-    padding: 10px 12px;
-    border-radius: 5px;
+    border: 2px solid var(--color-primary);
+    border-radius: 12px;
+    padding: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin-top: auto;
+}
+
+.offers-container .offers .offer .detail .view-offer-btn:hover {
+    background: #a47ac4;
+    border-color: #a47ac4;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(164, 122, 196, 0.4);
+}
+
+.offers-container .offers .offer .detail .view-application-btn {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    border-radius: 12px;
+    padding: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.offers-container .offers .offer .detail .view-application-btn:hover {
+    background: rgba(180, 151, 205, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(180, 151, 205, 0.3);
 }
 
 /* Media Queries */
 @media (max-width: 768px) {
-    .offersContainer .offers {
+    .offers-container .offers {
         grid-template-columns: 1fr;
     }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-    .offersContainer .offers {
+    .offers-container .offers {
         grid-template-columns: repeat(2, 1fr);
     }
 }

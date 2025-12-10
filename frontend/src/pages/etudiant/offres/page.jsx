@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import style from '../../../styles/student.module.css';
+import '../../../styles/pages/student/offers/style.css';
 import HeaderStudent from "../../../components/student/HeaderStudent";
 import { useOffers } from "../../../hooks/useoffers";
 import { useAuth } from "../../../hooks/useAuth";
@@ -13,25 +12,23 @@ import ShowOffers from "../../../components/offers/showOffers";
 function page() {
   const { getAllOffers, offers, loading } = useOffers();
   const { isStudent, isCompany } = useAuth();
-  const navigate = useNavigate();
-  // Charger les offres dès l'entrée sur la page
   useEffect(() => {
     getAllOffers();
   }, []);
 
 
   return (
-    <div className={style.studentOffer}>
+    <div className="student-offer">
       <HeaderStudent />
 
       {/* Filters */}
-      <form className={style.form}>
+      <form className="form">
         {/* Search */}
-        <div className={style.inputWrapper}>
-          <input type="search" placeholder="Rechercher un poste" className={style.formSearch} />
+        <div className="inputWrapper">
+          <input type="search" placeholder="Rechercher un poste" className="formSearch" />
           <HugeiconsIcon icon={Search01Icon} />
         </div>
-        <div className={style.subfilter}>
+        <div className="subfilter">
           {/* Type de contrat */}
           <select>
             <option>Type de contrat</option>
@@ -49,8 +46,8 @@ function page() {
           </select>
 
           {/* Localisation */}
-          <div className={style.inputWrapper}>
-            <input type="search" placeholder="Localisation" className={style.localisation} />
+          <div className="inputWrapper">
+            <input type="search" placeholder="Localisation" className="localisation" />
             <HugeiconsIcon icon={Location06Icon} />
           </div>
         </div>

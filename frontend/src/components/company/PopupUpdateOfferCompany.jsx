@@ -1,4 +1,4 @@
-import style from "../../styles/company.module.css";
+import "../../styles/components/company/PopupUpdateOfferCompany.css";
 import { useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Add01Icon, Delete02Icon } from "@hugeicons/core-free-icons";
@@ -9,13 +9,44 @@ function PopupUpdateOfferCompany({ onClose, offer, setOffer }) {
     keywords: offer?.keywords || []
   });
 
+  const [keywordInput, setKeywordInput] = useState("");
+
+  const handleAddKeyword = (e) => {
+    e.preventDefault();
+    const value = keywordInput.trim();
+    if (!value) return;
+    if (updatedOffer.keywords.includes(value)) return; // évite les doublons
+
+    setUpdatedOffer({
+      ...updatedOffer,
+      keywords: [...updatedOffer.keywords, value],
+    });
+    setKeywordInput("");
+  };
+
+  const handleRemoveKeyword = (keywordToRemove) => {
+    setUpdatedOffer({
+      ...updatedOffer,
+      keywords: updatedOffer.keywords.filter((k) => k !== keywordToRemove),
+    });
+  };
+
+  const handleSave = () => {
+    const offerToSave = {
+      ...updatedOffer,
+      keywords: updatedOffer.keywords.filter((k) => k.trim() !== ""),
+    };
+    setOffer(offerToSave);
+    onClose();
+  };
+
   return (
-    <div className={style.popupOverlay} onClick={onClose}>
-      <div className={style.popupCard} onClick={(e) => e.stopPropagation()}>
+    <div className="popup-overlay" onClick={onClose}>
+      <div className="popup-card" onClick={(e) => e.stopPropagation()}>
         <h2>Modifier une offre</h2>
         <form onSubmit={(e) => e.preventDefault()}>
           {/* Title */}
-          <div className={style.formGroup}>
+          <div className="form-group">
             <label htmlFor="title">Titre</label>
             <input
               type="text"
@@ -26,7 +57,7 @@ function PopupUpdateOfferCompany({ onClose, offer, setOffer }) {
             />
           </div>
           {/* Description */}
-          <div className={style.formGroup}>
+          <div className="form-group">
             <label htmlFor="description">Description</label>
             <textarea
               id="description"
@@ -36,7 +67,7 @@ function PopupUpdateOfferCompany({ onClose, offer, setOffer }) {
             />
           </div>
           {/* Contract */}
-          <div className={style.formGroup}>
+          <div className="form-group">
             <label htmlFor="contract">Contrat</label>
             <select
               id="contract"
@@ -50,7 +81,7 @@ function PopupUpdateOfferCompany({ onClose, offer, setOffer }) {
             </select>
           </div>
           {/* Localisation */}
-          <div className={style.formGroup}>
+          <div className="form-group">
             <label htmlFor="localisation">Localisation</label>
             <input
               type="text"
@@ -61,58 +92,41 @@ function PopupUpdateOfferCompany({ onClose, offer, setOffer }) {
             />
           </div>
           {/* Keywords */}
-          <div className={style.formGroup}>
-            <label>Mot-clés</label>
-            {updatedOffer.keywords.map((keyword, index) => (
-              <div key={index} style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
-                <input
-                  type="text"
-                  placeholder={`Mot-clé ${index + 1}`}
-                  value={keyword}
-                  onChange={(e) => {
-                    const newKeywords = [...updatedOffer.keywords];
-                    newKeywords[index] = e.target.value;
-                    setUpdatedOffer({ ...updatedOffer, keywords: newKeywords });
-                  }}
-                  style={{ flex: 1 }}
-                />
+          <div className="form-group">
+            <label htmlFor="keywords">Mots-clés</label>
+            <input
+              type="text"
+              id="keywords"
+              placeholder="Ajouter un mot-clé"
+              value={keywordInput}
+              onChange={(e) => setKeywordInput(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleAddKeyword(e)}
+            />
+          </div>
+
+          <div className="list-keywords">
+            {updatedOffer.keywords.map((keyword) => (
+              <span key={keyword} className="keyword-chip">
+                {keyword}
                 <button
                   type="button"
-                  onClick={() => {
-                    const newKeywords = updatedOffer.keywords.filter((_, i) => i !== index);
-                    setUpdatedOffer({ ...updatedOffer, keywords: newKeywords });
-                  }}
-                  style={{ padding: '8px', background: '#ff4444', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
+                  onClick={() => handleRemoveKeyword(keyword)}
                 >
                   <HugeiconsIcon icon={Delete02Icon} size={16} />
                 </button>
-              </div>
+              </span>
             ))}
-            <button
-              type="button"
-              onClick={() => setUpdatedOffer({ ...updatedOffer, keywords: [...updatedOffer.keywords, ""] })}
-              style={{ padding: '8px 16px', background: '#4CAF50', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', marginTop: '8px' }}
-            >
-              <HugeiconsIcon icon={Add01Icon} size={16} /> Ajouter un mot-clé
-            </button>
           </div>
           {/* Buttons */}
-          <div className={style.popupActions}>
+          <div className="popup-actions">
             <button
               type="button"
-              className={style.saveBtn}
-              onClick={() => {
-                const offerToSave = {
-                  ...updatedOffer,
-                  keywords: updatedOffer.keywords.filter(k => k.trim() !== '')
-                };
-                setOffer(offerToSave);
-                onClose();
-              }}
+              className="save-btn"
+              onClick={handleSave}
             >
               Sauvegarder
             </button>
-            <button type="button" className={style.cancelBtn} onClick={onClose}>
+            <button type="button" className="cancel-btn" onClick={onClose}>
               Annuler
             </button>
           </div>

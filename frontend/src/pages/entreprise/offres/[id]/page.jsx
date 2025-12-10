@@ -1,5 +1,5 @@
 import HeaderCompany from "../../../../components/company/HeaderCompany";
-import style from '../../../../styles/company.module.css';
+import '../../../../styles/pages/company/offers/detail/style.css';
 
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowLeft01Icon, WorkIcon, Location06Icon } from "@hugeicons/core-free-icons";
@@ -67,53 +67,53 @@ function CompanyOfferDetailsPage() {
 
 
   return (
-    <div className={style.companyDetailsOffer}>
+    <div className="company-details-offer">
       <HeaderCompany />
-      <div className={style.card}>
-        <div className={style.header}>
+      <div className="card">
+        <div className="header">
           <HugeiconsIcon icon={ArrowLeft01Icon} onClick={() => navigate('/entreprise/offres')} />
           <h3>{offer.title}</h3>
         </div>
-        <div className={style.main}>
+        <div className="main">
           <img src="https://images.radio-canada.ca/v1/ici-regions/16x9/espace-travail-partage-bureaux.jpg" />
-          <div className={style.detail}>
+          <div className="detail">
             <p>Le {new Date(offer.createdAt).toLocaleDateString()}</p>
             <h4>{offer.title}</h4>
-            <div className={style.contract}>
+            <div className="contract">
               <HugeiconsIcon icon={WorkIcon} color="#b497cd" />
               <p>Type de contrat : {offer.contractType}</p>
             </div>
-            <div className={style.localisation}>
+            <div className="localisation">
               <HugeiconsIcon icon={Location06Icon} color="#b497cd" />
               <p>{offer.location}</p>
             </div>
           </div>
         </div>
-        <div className={style.cards}>
-          <div className={style.description}>
+        <div className="cards">
+          <div className="description">
             <h4>Description de l'offre</h4>
             <p>
               {offer.description}
             </p>
           </div>
-          <div className={style.cardKeywords}>
+          <div className="cardKeywords">
             <h4>Mots-clés</h4>
-            <div className={style.keywords}>
+            <div className="keywords">
               {(offer.keywords || []).map((keyword, index) => (
                 <p key={`${keyword}-${index}`}>{keyword}</p>
               ))}
             </div>
           </div>
         </div>
-        <div className={style.actions}>
+        <div className="actions">
           <button
-            className={style.modifyBtn}
+            className="modify-btn"
             onClick={() => setShowUpdatePopup(true)}
           >
             Modifier l'offre
           </button>
           <button
-            className={style.deleteBtn}
+            className="delete-btn"
             onClick={() => setShowDeletePopup(true)}
           >
             Supprimer l'offre

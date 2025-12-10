@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function ShowOffers({ offers, loading, isStudent, isCompany }) {
     const navigate = useNavigate();
     return (
-        <div className="offersContainer">
+        <div className="offers-container">
             {loading ? (
                 <LoadingSpinner />
             ) : offers.length > 0 ? (
@@ -16,9 +16,9 @@ export default function ShowOffers({ offers, loading, isStudent, isCompany }) {
                             <div className="detail">
                                 <h2>{offer.title} - {offer.location}</h2>
                                 <p>{offer.description}</p>
-                                <button className="viewOfferButton" onClick={() => navigate(`/entreprise/offres/${offer.id}`)}>Voir l'offre</button>
+                                <button className="view-offer-btn" onClick={() => navigate(`/entreprise/offres/${offer.id}`)}>Voir l'offre</button>
                                 {isCompany && (
-                                    <button className="viewOfferButton" onClick={() => navigate(`/entreprise/offres/${offer.id}`)}>Voir candidatures</button>
+                                    <button className="view-application-btn" onClick={() => navigate(`/entreprise/offres/${offer.id}`)}>Voir candidatures</button>
                                 )}
                             </div>
                         </div>

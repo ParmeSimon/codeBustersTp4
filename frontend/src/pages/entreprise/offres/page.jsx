@@ -1,6 +1,6 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import HeaderCompany from "../../../components/company/HeaderCompany";
-import style from "../../../styles/company.module.css";
+import '../../../styles/pages/company/offers/style.css';
 import "swiper/css";
 import "swiper/css/navigation";
 
@@ -61,13 +61,14 @@ function CompanyOffersPage() {
   };
 
   return (
-    <div className={style.companyOffer}>
+    <div className="company-offer">
       <HeaderCompany />
 
       {/* Add Button */}
-      <button type="button" className="addOfferBtn" onClick={() => setShowPopup(true)}>
+      <button type="button" className="add-offer-btn" onClick={() => setShowPopup(true)}>
         <HugeiconsIcon icon={PropertyAddIcon} />
       </button>
+      
       {/* Offers */}
       <ShowOffers offers={offers} loading={loading} isStudent={isStudent} isCompany={isCompany} />
 

@@ -35,8 +35,8 @@ function CompanyProfilePage() {
           <HugeiconsIcon icon={UserIcon} size={36} />
         </div>
 
-        <h2 className="profile-name">Entreprise2</h2>
-        <p className="profile-email">Entreprise2.group2@ekod.fr</p>
+        <h2>Entreprise2</h2>
+        <p>Entreprise2.group2@ekod.fr</p>
       </section>
 
       {/* Localisation / Description / Site */}

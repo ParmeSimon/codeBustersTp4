@@ -1,13 +1,13 @@
-import style from "../../styles/company.module.css";
+import "../../styles/components/company/PopupEditProfileCompany.css"
 
 function PopupEditProfileCompany({ onClose }) {
   return (
-    <div className={style.popupOverlay} onClick={onClose}>
-      <div className={style.popupCard} onClick={(e) => e.stopPropagation()}>
+    <div className="popup-overlay" onClick={onClose}>
+      <div className="popup-card" onClick={(e) => e.stopPropagation()}>
         <h2>Modifier le profil</h2>
         <form onSubmit={(e) => e.preventDefault()}>
           {/* Name */}
-          <div className={style.formGroup}>
+          <div className="form-group">
             <label htmlFor="name">Nom</label>
             <input
               type="text"
@@ -16,7 +16,7 @@ function PopupEditProfileCompany({ onClose }) {
             />
           </div>
           {/* Localisation */}
-          <div className={style.formGroup}>
+          <div className="form-group">
             <label htmlFor="localisation">Localisation</label>
             <input
               type="text"
@@ -25,7 +25,7 @@ function PopupEditProfileCompany({ onClose }) {
             />
           </div>
           {/* Site Web */}
-          <div className={style.formGroup}>
+          <div className="form-group">
             <label htmlFor="site">Site Web</label>
             <input
               type="text"
@@ -34,7 +34,7 @@ function PopupEditProfileCompany({ onClose }) {
             />
           </div>
           {/* Description */}
-          <div className={style.formGroup}>
+          <div className="form-group">
             <label htmlFor="description">Description</label>
             <textarea
               id="description"
@@ -42,9 +42,9 @@ function PopupEditProfileCompany({ onClose }) {
             />
           </div>
           {/* Buttons */}
-          <div className={style.popupActions}>
-            <button className={style.saveBtn}>Sauvegarder</button>
-            <button type="button" className={style.cancelBtn} onClick={onClose}>
+          <div className="popup-actions">
+            <button className="save-btn">Sauvegarder</button>
+            <button type="button" className="cancel-btn" onClick={onClose}>
               Annuler
             </button>
           </div>

@@ -111,14 +111,14 @@ function AppRoutes() {
             }
           />
 
-          {/* {<Route
+          <Route
             path="entreprise/offres/candidatures/:id"
             element={
               <ProtectedRoute requiredRole="COMPANY">
                 <CompanyOfferApplicationsPage />
               </ProtectedRoute>
             }
-          />} */}
+          />
 
           {/* ... */}
 
