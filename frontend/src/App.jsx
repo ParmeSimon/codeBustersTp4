@@ -8,14 +8,15 @@ import { AuthProvider, useAuth } from "./hooks/useAuth";
 // import Header from "./components/Header";
 // import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
-import StudentProfilePage from "./pages/student/StudentProfilePage";
+import StudentProfilePage from "./pages/etudiant/profil/page";
 import LoginPage from "./pages/auth/page";
-import StudentOffersPage from "./pages/student/StudentOffersPage";
-import StudentDetailsOfferPage from "./pages/student/StudentDetailsOfferPage";
-import CompanyOffersPage from "./pages/company/CompanyOffersPage";
-import CompanyProfilePage from "./pages/company/CompanyProfilePage";
-import CompanyOfferDetailsPage from "./pages/company/CompanyOfferDetailsPage";
+import StudentOffersPage from "./pages/etudiant/offres/page";
+import StudentDetailsOfferPage from "./pages/etudiant/offres/[id]/page";
+import CompanyOffersPage from "./pages/entreprise/offres/page";
+import CompanyProfilePage from "./pages/entreprise/profil/page";
+import CompanyOfferDetailsPage from "./pages/entreprise/offres/[id]/page";
 
+import { OffersProvider } from "./hooks/useoffers";
 // Pages communes
 // import Home from './pages/Home';
 
@@ -69,7 +70,7 @@ function AppRoutes() {
           />
 
           <Route
-            path="/etudiant/details-offre"
+            path="/etudiant/offres/:id"
             element={
               // <ProtectedRoute requiredRole="STUDENT">
               <StudentDetailsOfferPage />
@@ -100,7 +101,7 @@ function AppRoutes() {
           />
 
           <Route
-            path="entreprise/details-offre"
+            path="entreprise/offres/:id"
             element={
               // <ProtectedRoute requiredRole="COMPANY">
               <CompanyOfferDetailsPage />
@@ -108,14 +109,14 @@ function AppRoutes() {
             }
           />
 
-          {/* <Route
-            path="entreprise/candidatures-offre"
+          {<Route
+            path="entreprise/offres/candidatures/:id"
             element={
               // <ProtectedRoute requiredRole="COMPANY">
               <CompanyOfferApplicationsPage />
               // </ProtectedRoute>
             }
-          /> */}
+          />}
 
           {/* ... */}
 
@@ -152,7 +153,9 @@ function App() {
   return (
     <Router>
       <AuthProvider>
-        <AppRoutes />
+        <OffersProvider>
+          <AppRoutes />
+        </OffersProvider>
       </AuthProvider>
     </Router>
   );

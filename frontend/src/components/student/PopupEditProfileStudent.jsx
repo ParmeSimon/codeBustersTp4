@@ -1,4 +1,4 @@
-import style from "../../../styles/student.module.css";
+import style from "../../styles/student.module.css";
 
 function PopupEditProfileStudent({ onClose }) {
   return (

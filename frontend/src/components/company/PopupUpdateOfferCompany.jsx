@@ -1,10 +1,10 @@
-import style from "../../../styles/company.module.css";
+import style from "../../styles/company.module.css";
 
-function PopupAddOffersCompany({ onClose }) {
+function PopupUpdateOfferCompany({ onClose }) {
   return (
     <div className={style.popupOverlay} onClick={onClose}>
       <div className={style.popupCard} onClick={(e) => e.stopPropagation()}>
-        <h2>Ajouter une offre</h2>
+        <h2>Modifier une offre</h2>
         <form onSubmit={(e) => e.preventDefault()}>
           {/* Title */}
           <div className={style.formGroup}>
@@ -62,4 +62,4 @@ function PopupAddOffersCompany({ onClose }) {
   );
 }
 
-export default PopupAddOffersCompany;
+export default PopupUpdateOfferCompany;

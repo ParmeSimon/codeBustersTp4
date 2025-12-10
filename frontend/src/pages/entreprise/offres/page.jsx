@@ -1,19 +1,14 @@
 import { useRef, useState } from "react";
-import style from "../../styles/company.module.css";
-import HeaderCompany from "./widgets/HeaderCompany";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import HeaderCompany from "../../../components/company/HeaderCompany";
+import style from "../../../styles/company.module.css";
 import "swiper/css";
 import "swiper/css/navigation";
 
 import { HugeiconsIcon } from "@hugeicons/react";
 import { PropertyAddIcon } from "@hugeicons/core-free-icons";
-import PopupAddOffersCompany from "./widgets/PopupAddOffersCompany";
+import PopupAddOffersCompany from "../../../components/company/PopupAddOffersCompany";
 
 function CompanyOffersPage() {
-  const prevRefOffer = useRef(null);
-  const nextRefOffer = useRef(null);
   const [showPopup, setShowPopup] = useState(false);
 
   return (

@@ -1,10 +1,10 @@
-import style from "../../styles/company.module.css";
-import HeaderCompany from "./widgets/HeaderCompany";
+import HeaderCompany from "../../../../components/company/HeaderCompany";
+import style from '../../../../styles/company.module.css';
 
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowLeft01Icon, WorkIcon, Location06Icon } from "@hugeicons/core-free-icons";
-import PopupUpdateOfferCompany from "./widgets/PopupUpdateOfferCompany";
-import PopupDeleteOfferCompany from "./widgets/PopupDeleteOfferCompany";
+import PopupUpdateOfferCompany from "../../../../components/company/PopupUpdateOfferCompany";
+import PopupDeleteOfferCompany from "../../../../components/company/PopupDeleteOfferCompany";
 import { useState } from "react";
 
 function CompanyOfferDetailsPage() {

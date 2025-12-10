@@ -1,4 +1,3 @@
-import style from "../../styles/company.module.css";
 import { useState } from "react";
 
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -9,12 +8,20 @@ import {
   File01Icon,
   Settings02Icon,
 } from "@hugeicons/core-free-icons";
-import PopupEditProfileCompany from "./widgets/PopupEditProfileCompany";
-import HeaderCompany from "./widgets/HeaderCompany";
+import PopupEditProfileCompany from "../../../components/company/PopupEditProfileCompany";
+import HeaderCompany from "../../../components/company/HeaderCompany";
+import { useAuth } from "../../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import style from "../../../styles/company.module.css";
 
 function CompanyProfilePage() {
   const [showPopup, setShowPopup] = useState(false);
-
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
   return (
     <div className={style.CompanyProfile}>
       <HeaderCompany />
@@ -47,6 +54,7 @@ function CompanyProfilePage() {
           https://digitalagency.example.com
         </a>
       </section>
+      <button onClick={handleLogout} className={style.disconnectButton}>Déconnexion</button>
 
       {/* Popup pour modifier le profil */}
       {showPopup && (

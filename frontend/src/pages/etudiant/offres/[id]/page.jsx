@@ -1,10 +1,27 @@
-import style from '../../styles/student.module.css';
-import HeaderStudent from './widgets/HeaderStudent';
+import style from '../../../../styles/student.module.css';
+import HeaderStudent from '../../../../components/student/HeaderStudent';
 
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowLeft01Icon, WorkIcon, Location06Icon } from "@hugeicons/core-free-icons";
+import { useOffers } from '../../../../hooks/useoffers';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
-function StudentDetailsOfferPage() {
+function page() {
+    const { getOfferDetail, offerDetail } = useOffers()
+    const { id } = useParams();
+    console.log('id', id);
+
+    // Charger les détails de l'offre au montage
+    useEffect(() => {
+        getOfferDetail(id);
+    }, [id]);
+
+    // Observer les changements de offerDetail
+    useEffect(() => {
+        console.log('COUCOU test getOfferDetail', offerDetail);
+    }, [offerDetail]);
+
     return (
         <div className={style.studentDetailsOffer}>
             <HeaderStudent />
@@ -17,15 +34,15 @@ function StudentDetailsOfferPage() {
                     <img src="https://images.radio-canada.ca/v1/ici-regions/16x9/espace-travail-partage-bureaux.jpg" />
                     <div className={style.detail}>
                         <p>Le 10/10/2025</p>
-                    <h4>Stagiaire Développeur Front-End</h4>
-                    <div className={style.contract}>
-                        <HugeiconsIcon icon={WorkIcon} />
-                        <p>Type de contrat : Stage</p>
-                    </div>
-                    <div className={style.localisation}>
-                        <HugeiconsIcon icon={Location06Icon} />
-                        <p>Paris</p>
-                    </div>
+                        <h4>Stagiaire Développeur Front-End</h4>
+                        <div className={style.contract}>
+                            <HugeiconsIcon icon={WorkIcon} />
+                            <p>Type de contrat : Stage</p>
+                        </div>
+                        <div className={style.localisation}>
+                            <HugeiconsIcon icon={Location06Icon} />
+                            <p>Paris</p>
+                        </div>
                     </div>
                 </div>
                 <div className={style.cards}>
@@ -49,4 +66,4 @@ function StudentDetailsOfferPage() {
     );
 }
 
-export default StudentDetailsOfferPage;
+export default page;
