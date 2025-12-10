@@ -1,63 +1,78 @@
 import style from '../../../../styles/student.module.css';
 import HeaderStudent from '../../../../components/student/HeaderStudent';
-
-import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowLeft01Icon, WorkIcon, Location06Icon } from "@hugeicons/core-free-icons";
+import { Offer } from '../../../../components/offers/offer';
 import { useOffers } from '../../../../hooks/useoffers';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
-function page() {
-    const { getOfferDetail, offerDetail } = useOffers()
+import PopupApplyForOfferStudent from '../../../../components/student/PopupApplyForOfferStudent';
+import useStudentProfile from '../../../../hooks/useStudentProfile';
+import { useSnackbar } from 'notistack';
+import { useNavigate } from 'react-router-dom';
+function StudentOfferDetailsPage() {
+    const navigate = useNavigate();
+    const { getOfferDetail } = useOffers();
+    const { applyToOffer } = useStudentProfile();
+    const { enqueueSnackbar } = useSnackbar();
     const { id } = useParams();
+    const [showApplyPopup, setShowApplyPopup] = useState(false);
+    const [offer, setOffer] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     // Charger les détails de l'offre au montage
     useEffect(() => {
-        getOfferDetail(id);
+        const loadOffer = async () => {
+            setLoading(true);
+            const data = await getOfferDetail(id);
+            setOffer(data);
+            setLoading(false);
+        };
+        loadOffer();
     }, [id]);
 
+    const handleApply = () => {
+        setShowApplyPopup(true);
+    };
+
+    const handleSubmitApplication = async (coverLetter) => {
+        try {
+            await applyToOffer(id, coverLetter);
+            enqueueSnackbar("Candidature envoyée avec succès", { variant: "success" });
+            setShowApplyPopup(false);
+            navigate("/etudiant/offres");
+        } catch (error) {
+            enqueueSnackbar(error.message || "Erreur lors de l'envoi de la candidature", { variant: "error" });
+        }
+    };
+
+    // Afficher un loader si les données ne sont pas encore chargées
+    if (loading || !offer) {
+        return (
+            <div className={style.studentDetailsOffer}>
+                <HeaderStudent />
+                <p>Chargement...</p>
+            </div>
+        );
+    }
     return (
         <div className={style.studentDetailsOffer}>
             <HeaderStudent />
-            <div className={style.card}>
-                <div className={style.header}>
-                    <HugeiconsIcon icon={ArrowLeft01Icon} />
-                    <h3>Stagiaire Développeur Front-End</h3>
-                </div>
-                <div className={style.main}>
-                    <img src="https://images.radio-canada.ca/v1/ici-regions/16x9/espace-travail-partage-bureaux.jpg" />
-                    <div className={style.detail}>
-                        <p>Le 10/10/2025</p>
-                        <h4>Stagiaire Développeur Front-End</h4>
-                        <div className={style.contract}>
-                            <HugeiconsIcon icon={WorkIcon} />
-                            <p>Type de contrat : Stage</p>
-                        </div>
-                        <div className={style.localisation}>
-                            <HugeiconsIcon icon={Location06Icon} />
-                            <p>Paris</p>
-                        </div>
-                    </div>
-                </div>
-                <div className={style.cards}>
-                    <div className={style.description}>
-                        <h4>Description de l'offre</h4>
-                        <p>Stage de 6 mois pour développer des interfaces utilisateur modernes avec React et TypeScript.</p>
-                    </div>
-                    <div className={style.cardKeywords}>
-                        <h4>Mots-clés</h4>
-                        <div className={style.keywords}>
-                            <p>CDI</p>
-                            <p>Python</p>
-                            <p>React</p>
-                        </div>
-                    </div>
-                </div>
-                <button>Postuler</button>
-            </div>
+            <Offer
+                offer={offer}
+                userType="student"
+                style={style}
+                onApply={handleApply}
+                backUrl="/etudiant/offres"
+            />
 
+            {/* Popup pour postuler */}
+            {showApplyPopup && (
+                <PopupApplyForOfferStudent
+                    onClose={() => setShowApplyPopup(false)}
+                    onSubmit={handleSubmitApplication}
+                />
+            )}
         </div>
     );
 }
 
-export default page;
+export default StudentOfferDetailsPage;

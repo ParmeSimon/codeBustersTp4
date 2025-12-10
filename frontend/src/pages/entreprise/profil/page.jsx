@@ -13,8 +13,9 @@ import HeaderCompany from "../../../components/company/HeaderCompany";
 import { useAuth } from "../../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import "../../../styles/pages/company/profile/style.css";
-
+import useCompanyProfile from "../../../hooks/useCompany.jsx";
 function CompanyProfilePage() {
+  const { profile, loading, error, updateProfile } = useCompanyProfile();
   const [showPopup, setShowPopup] = useState(false);
   const { logout } = useAuth();
   const navigate = useNavigate();
@@ -22,6 +23,12 @@ function CompanyProfilePage() {
     logout();
     navigate('/login');
   };
+
+  const handleSaveUpdateProfile = (data) => {
+    setShowPopup(false);
+    updateProfile(data);
+  };
+
   return (
     <div className="company-profile">
       <HeaderCompany />
@@ -35,30 +42,30 @@ function CompanyProfilePage() {
           <HugeiconsIcon icon={UserIcon} size={36} />
         </div>
 
-        <h2 className="profile-name">Entreprise2</h2>
-        <p className="profile-email">Entreprise2.group2@ekod.fr</p>
+        <h2 className="profile-name">{profile?.name}</h2>
+        <p className="profile-email">{profile?.email}</p>
       </section>
 
       {/* Localisation / Description / Site */}
       <section className="profile-links">
         <a className="profile-link">
           <HugeiconsIcon icon={Location01Icon} color="#b497cd" />
-          Paris
+          {profile?.location}
         </a>
         <a className="profile-link">
           <HugeiconsIcon icon={File01Icon} color="#b497cd" />
-          Entreprise innovante dans le domaine de la technologie.
+          {profile?.description}
         </a>
         <a className="profile-link">
           <HugeiconsIcon icon={Link02Icon} color="#b497cd" />
-          https://digitalagency.example.com
+          {profile?.website}
         </a>
       </section>
       <button onClick={handleLogout} className="disconnect-button">Déconnexion</button>
 
       {/* Popup pour modifier le profil */}
       {showPopup && (
-        <PopupEditProfileCompany onClose={() => setShowPopup(false)} />
+        <PopupEditProfileCompany onClose={() => setShowPopup(false)} profile={profile} handleSaveUpdateProfile={handleSaveUpdateProfile} />
       )}
     </div>
   );

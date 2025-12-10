@@ -140,6 +140,12 @@ export const studentService = {
     const response = await api.get('/students/applications');
     return response.data.applications || [];
   },
+
+  // Supprimer une candidature
+  deleteApplication: async (applicationId) => {
+    const response = await api.delete(`/students/applications/${applicationId}`);
+    return response.data;
+  },
 };
 
 // ===== Services pour les entreprises =====
