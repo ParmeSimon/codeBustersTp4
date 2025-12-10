@@ -14,6 +14,7 @@ import StudentOffersPage from "./pages/student/StudentOffersPage";
 import StudentDetailsOfferPage from "./pages/student/StudentDetailsOfferPage";
 import CompanyOffersPage from "./pages/company/CompanyOffersPage";
 import CompanyProfilePage from "./pages/company/CompanyProfilePage";
+import CompanyOfferDetailsPage from "./pages/company/CompanyOfferDetailsPage";
 
 // Pages communes
 // import Home from './pages/Home';
@@ -84,7 +85,7 @@ function AppRoutes() {
             path="entreprise/profil"
             element={
               // <ProtectedRoute requiredRole="COMPANY">
-              <CompanyProfilePage/>
+              <CompanyProfilePage />
               // </ProtectedRoute>
             }
           />
@@ -97,6 +98,24 @@ function AppRoutes() {
               // </ProtectedRoute>
             }
           />
+
+          <Route
+            path="entreprise/details-offre"
+            element={
+              // <ProtectedRoute requiredRole="COMPANY">
+              <CompanyOfferDetailsPage />
+              // </ProtectedRoute>
+            }
+          />
+
+          {/* <Route
+            path="entreprise/candidatures-offre"
+            element={
+              // <ProtectedRoute requiredRole="COMPANY">
+              <CompanyOfferApplicationsPage />
+              // </ProtectedRoute>
+            }
+          /> */}
 
           {/* ... */}
 
