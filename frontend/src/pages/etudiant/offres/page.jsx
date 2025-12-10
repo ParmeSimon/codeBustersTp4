@@ -10,15 +10,57 @@ import {
   Location06Icon
 } from "@hugeicons/core-free-icons";
 import ShowOffers from "../../../components/offers/showOffers";
+import useStudentProfile from "../../../hooks/useStudentProfile";
+import { useState } from "react";
+import { useSnackbar } from "notistack";
+import { PopupDelete } from "../../../components/offers/PopupDelete";
+
 function page() {
   const { getAllOffers, offers, loading } = useOffers();
   const { isStudent, isCompany } = useAuth();
-  const navigate = useNavigate();
+  const { getApplications, deleteApplication } = useStudentProfile();
+  const { enqueueSnackbar } = useSnackbar();
+  const [applications, setApplications] = useState([]);
+  const [showDeletePopup, setShowDeletePopup] = useState(false);
+  const [applicationToDelete, setApplicationToDelete] = useState(null);
   // Charger les offres dès l'entrée sur la page
   useEffect(() => {
     getAllOffers();
   }, []);
 
+  useEffect(() => {
+    const loadApplications = async () => {
+      const data = await getApplications();
+      setApplications(data);
+    };
+    loadApplications();
+  }, []);
+
+  const handleDeleteApplication = (applicationId) => {
+    setApplicationToDelete(applicationId);
+    setShowDeletePopup(true);
+  };
+
+  const confirmDeleteApplication = async () => {
+    if (applicationToDelete) {
+      const result = await deleteApplication(applicationToDelete);
+      if (result.success) {
+        enqueueSnackbar("Candidature supprimée avec succès", { variant: "success" });
+        // Recharger les candidatures
+        const data = await getApplications();
+        setApplications(data);
+      } else {
+        enqueueSnackbar(result.error || "Erreur lors de la suppression", { variant: "error" });
+      }
+    }
+    setShowDeletePopup(false);
+    setApplicationToDelete(null);
+  };
+
+  const cancelDeleteApplication = () => {
+    setShowDeletePopup(false);
+    setApplicationToDelete(null);
+  };
 
   return (
     <div className={style.studentOffer}>
@@ -57,8 +99,25 @@ function page() {
       </form>
 
       {/* Offers */}
-      <ShowOffers offers={offers} loading={loading} isStudent={isStudent} isCompany={isCompany} />
-      
+      <ShowOffers
+        offers={offers}
+        loading={loading}
+        isStudent={isStudent}
+        isCompany={isCompany}
+        applications={applications}
+        onDeleteApplication={handleDeleteApplication}
+      />
+
+      {/* Popup de confirmation de suppression */}
+      {showDeletePopup && (
+        <PopupDelete
+          title="Supprimer la candidature"
+          message="Êtes-vous sûr de vouloir supprimer cette candidature ? Cette action est irréversible."
+          onConfirm={confirmDeleteApplication}
+          onCancel={cancelDeleteApplication}
+        />
+      )}
+
     </div>
   );
 }

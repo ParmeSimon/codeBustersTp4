@@ -9,8 +9,6 @@ function PopupEditProfileCompany({ onClose, profile, handleSaveUpdateProfile }) 
     description: profile?.description,
   });
 
-  console.log(formData);
-
   return (
     <div className={style.popupOverlay} onClick={onClose}>
       <div className={style.popupCard} onClick={(e) => e.stopPropagation()}>
