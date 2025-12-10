@@ -9,22 +9,37 @@ function PopupEditProfileCompany({ onClose }) {
           {/* Name */}
           <div className={style.formGroup}>
             <label htmlFor="name">Nom</label>
-            <input type="text" id="name" />
+            <input
+              type="text"
+              id="name"
+              placeholder="Saisissez le nom de l'entreprise"
+            />
           </div>
           {/* Localisation */}
           <div className={style.formGroup}>
             <label htmlFor="localisation">Localisation</label>
-            <input type="text" id="localisation" />
+            <input
+              type="text"
+              id="localisation"
+              placeholder="Saisissez la localisation de l'entreprise"
+            />
           </div>
           {/* Site Web */}
           <div className={style.formGroup}>
             <label htmlFor="site">Site Web</label>
-            <input type="text" id="site" />
+            <input
+              type="text"
+              id="site"
+              placeholder="Saisissez le site web de l'entreprise"
+            />
           </div>
           {/* Description */}
           <div className={style.formGroup}>
             <label htmlFor="description">Description</label>
-            <textarea id="description" />
+            <textarea
+              id="description"
+              placeholder="Saisissez la description de l'entreprise"
+            />
           </div>
           {/* Buttons */}
           <div className={style.popupActions}>

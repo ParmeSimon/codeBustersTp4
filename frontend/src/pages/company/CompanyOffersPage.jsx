@@ -1,84 +1,103 @@
-import React, { useRef, useState, useEffect } from "react";
-import style from "../../styles/student.module.css";
-import HeaderStudent from "./widgets/HeaderCompany";
+import { useRef, useState } from "react";
+import style from "../../styles/company.module.css";
+import HeaderCompany from "./widgets/HeaderCompany";
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 
 import { HugeiconsIcon } from "@hugeicons/react";
-import {
-  Search01Icon,
-  Location06Icon,
-  ArrowLeft01Icon,
-  ArrowRight01Icon
-} from "@hugeicons/core-free-icons";
+import { PropertyAddIcon } from "@hugeicons/core-free-icons";
+import PopupAddOffersCompany from "./widgets/PopupAddOffersCompany";
 
-function StudentOffersPage() {
+function CompanyOffersPage() {
   const prevRefOffer = useRef(null);
   const nextRefOffer = useRef(null);
+  const [showPopup, setShowPopup] = useState(false);
+
   return (
-    <div className={style.studentOffer}>
-      <HeaderStudent />
+    <div className={style.companyOffer}>
+      <HeaderCompany />
 
-      {/* Filters */}
-      <form className={style.form}>
-        {/* Search */}
-        <div className={style.inputWrapper}>
-          <input type="search" placeholder="Rechercher un poste" className={style.formSearch} />
-          <HugeiconsIcon icon={Search01Icon} />
-        </div>
-        <div className={style.subfilter}>
-          {/* Type de contrat */}
-          <select>
-            <option>Type de contrat</option>
-            <option>STAGE</option>
-            <option>ALTERNANCE</option>
-            <option>CDI</option>
-            <option>CDD</option>
-          </select>
-
-          {/* Mes candidatures ou non */}
-          <select>
-            <option>Toutes</option>
-            <option>Mes candidatures</option>
-            <option>Pas candidater</option>
-          </select>
-
-          {/* Localisation */}
-          <div className={style.inputWrapper}>
-            <input type="search" placeholder="Localisation" className={style.localisation} />
-            <HugeiconsIcon icon={Location06Icon} />
+      {/* Add Button */}
+      <button type="button" className="addOfferBtn" onClick={() => setShowPopup(true)}>
+        <HugeiconsIcon icon={PropertyAddIcon} />
+      </button>
+      {/* Offers */}
+      <div className={style.offers}>
+        <div className={style.offer}>
+          <img src="https://images.radio-canada.ca/v1/ici-regions/16x9/espace-travail-partage-bureaux.jpg" />
+          <div className={style.detail}>
+            <h2>Développeur Python/Django - Lyon</h2>
+            <p>
+              CDI pour un développeur Python expérimenté. Travail sur des
+              applications web avec Django et PostgreSQL.
+            </p>
+            <button className={style.seeOfferBtn}>Voir l'offre</button>
+            <button className={style.applicationBtn}>4 candidatures</button>
           </div>
         </div>
-      </form>
 
-      {/* Offers */}
-      {/* <div>
-        <button ref={prevRefOffer}><HugeiconsIcon icon={ArrowLeft01Icon} /></button>
-        <button ref={nextRefOffer}><HugeiconsIcon icon={ArrowRight01Icon} /></button>
-        <Swiper
-          pagination={true}
-          keyboard={true}
-          modules={[Navigation, Pagination]}
-          slidesPerView={2}
-          spaceBetween={30}
-          navigation={{
-            prevE: prevRefOffer.current,
-            nextEl: nextRefOffer.current
-          }}
-          loop={true}
-          className="mySwiper"
-        >
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-      </Swiper>
-      </div> */}
+        <div className={style.offer}>
+          <img src="https://images.radio-canada.ca/v1/ici-regions/16x9/espace-travail-partage-bureaux.jpg" />
+          <div className={style.detail}>
+            <h2>Développeur Python/Django - Lyon</h2>
+            <p>
+              CDI pour un développeur Python expérimenté. Travail sur des
+              applications web avec Django et PostgreSQL.
+            </p>
+            <button className={style.seeOfferBtn}>Voir l'offre</button>
+            <button className={style.applicationBtn}>4 candidatures</button>
+          </div>
+        </div>
+
+        <div className={style.offer}>
+          <img src="https://images.radio-canada.ca/v1/ici-regions/16x9/espace-travail-partage-bureaux.jpg" />
+          <div className={style.detail}>
+            <h2>Développeur Python/Django - Lyon</h2>
+            <p>
+              CDI pour un développeur Python expérimenté. Travail sur des
+              applications web avec Django et PostgreSQL.
+            </p>
+            <button className={style.seeOfferBtn}>Voir l'offre</button>
+            <button className={style.applicationBtn}>4 candidatures</button>
+          </div>
+        </div>
+
+        <div className={style.offer}>
+          <img src="https://images.radio-canada.ca/v1/ici-regions/16x9/espace-travail-partage-bureaux.jpg" />
+          <div className={style.detail}>
+            <h2>Développeur Python/Django - Lyon</h2>
+            <p>
+              CDI pour un développeur Python expérimenté. Travail sur des
+              applications web avec Django et PostgreSQL.
+            </p>
+            <button className={style.seeOfferBtn}>Voir l'offre</button>
+            <button className={style.applicationBtn}>4 candidatures</button>
+          </div>
+        </div>
+
+        <div className={style.offer}>
+          <img src="https://images.radio-canada.ca/v1/ici-regions/16x9/espace-travail-partage-bureaux.jpg" />
+          <div className={style.detail}>
+            <h2>Développeur Python/Django - Lyon</h2>
+            <p>
+              CDI pour un développeur Python expérimenté. Travail sur des
+              applications web avec Django et PostgreSQL.
+            </p>
+            <button className={style.seeOfferBtn}>Voir l'offre</button>
+            <button className={style.applicationBtn}>4 candidatures</button>
+          </div>
+        </div>
+      </div>
+
+      {/* Popup pour ajouter une offre */}
+      {showPopup && (
+        <PopupAddOffersCompany onClose={() => setShowPopup(false)} />
+      )}
     </div>
   );
 }
 
-export default StudentOffersPage;
+export default CompanyOffersPage;
