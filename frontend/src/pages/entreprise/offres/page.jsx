@@ -7,9 +7,58 @@ import "swiper/css/navigation";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { PropertyAddIcon } from "@hugeicons/core-free-icons";
 import PopupAddOffersCompany from "../../../components/company/PopupAddOffersCompany";
+import ShowOffers from "../../../components/offers/showOffers";
+import { useAuth } from "../../../hooks/useAuth";
+import { useOffers } from "../../../hooks/useoffers";
+import { useEffect } from "react";
+import { useSnackbar } from "notistack";
 
 function CompanyOffersPage() {
   const [showPopup, setShowPopup] = useState(false);
+  const { isStudent, isCompany } = useAuth();
+  const { getAllOffers, offers, loading, createOffer } = useOffers();
+  const { enqueueSnackbar } = useSnackbar();
+  const [newOffer, setNewOffer] = useState(
+    {
+      title: "",
+      description: "",
+      contractType: "ALTERNANCE",
+      location: "",
+      keywords: [""]
+    });
+  useEffect(() => {
+    getAllOffers();
+  }, []);
+
+  const handleSaveOffer = async (offer) => {
+    const response = await createOffer(offer);
+    if (response.success) {
+      enqueueSnackbar("Offre créée avec succès", { variant: "success" });
+      getAllOffers();
+      setShowPopup(false);
+      setNewOffer({
+        title: "",
+        description: "",
+        contractType: "ALTERNANCE",
+        location: "",
+        keywords: [""]
+      });
+    } else {
+      const errorMessage = response.details?.[0]?.message || response.error || "Erreur lors de la création de l'offre";
+      enqueueSnackbar(errorMessage, { variant: "error" });
+    }
+  };
+
+  const handlecancel = () => {
+    setShowPopup(false);
+    setNewOffer({
+      title: "",
+      description: "",
+      contractType: "",
+      location: "",
+      keywords: [""]
+    });
+  };
 
   return (
     <div className={style.companyOffer}>
@@ -20,76 +69,16 @@ function CompanyOffersPage() {
         <HugeiconsIcon icon={PropertyAddIcon} />
       </button>
       {/* Offers */}
-      <div className={style.offers}>
-        <div className={style.offer}>
-          <img src="https://images.radio-canada.ca/v1/ici-regions/16x9/espace-travail-partage-bureaux.jpg" />
-          <div className={style.detail}>
-            <h2>Développeur Python/Django - Lyon</h2>
-            <p>
-              CDI pour un développeur Python expérimenté. Travail sur des
-              applications web avec Django et PostgreSQL.
-            </p>
-            <button className={style.seeOfferBtn}>Voir l'offre</button>
-            <button className={style.applicationBtn}>4 candidatures</button>
-          </div>
-        </div>
-
-        <div className={style.offer}>
-          <img src="https://images.radio-canada.ca/v1/ici-regions/16x9/espace-travail-partage-bureaux.jpg" />
-          <div className={style.detail}>
-            <h2>Développeur Python/Django - Lyon</h2>
-            <p>
-              CDI pour un développeur Python expérimenté. Travail sur des
-              applications web avec Django et PostgreSQL.
-            </p>
-            <button className={style.seeOfferBtn}>Voir l'offre</button>
-            <button className={style.applicationBtn}>4 candidatures</button>
-          </div>
-        </div>
-
-        <div className={style.offer}>
-          <img src="https://images.radio-canada.ca/v1/ici-regions/16x9/espace-travail-partage-bureaux.jpg" />
-          <div className={style.detail}>
-            <h2>Développeur Python/Django - Lyon</h2>
-            <p>
-              CDI pour un développeur Python expérimenté. Travail sur des
-              applications web avec Django et PostgreSQL.
-            </p>
-            <button className={style.seeOfferBtn}>Voir l'offre</button>
-            <button className={style.applicationBtn}>4 candidatures</button>
-          </div>
-        </div>
-
-        <div className={style.offer}>
-          <img src="https://images.radio-canada.ca/v1/ici-regions/16x9/espace-travail-partage-bureaux.jpg" />
-          <div className={style.detail}>
-            <h2>Développeur Python/Django - Lyon</h2>
-            <p>
-              CDI pour un développeur Python expérimenté. Travail sur des
-              applications web avec Django et PostgreSQL.
-            </p>
-            <button className={style.seeOfferBtn}>Voir l'offre</button>
-            <button className={style.applicationBtn}>4 candidatures</button>
-          </div>
-        </div>
-
-        <div className={style.offer}>
-          <img src="https://images.radio-canada.ca/v1/ici-regions/16x9/espace-travail-partage-bureaux.jpg" />
-          <div className={style.detail}>
-            <h2>Développeur Python/Django - Lyon</h2>
-            <p>
-              CDI pour un développeur Python expérimenté. Travail sur des
-              applications web avec Django et PostgreSQL.
-            </p>
-            <button className={style.seeOfferBtn}>Voir l'offre</button>
-            <button className={style.applicationBtn}>4 candidatures</button>
-          </div>
-        </div>
-      </div>
+      <ShowOffers offers={offers} loading={loading} isStudent={isStudent} isCompany={isCompany} />
 
       {/* Popup pour ajouter une offre */}
       {showPopup && (
-        <PopupAddOffersCompany onClose={() => setShowPopup(false)} />
+        <PopupAddOffersCompany
+          onClose={handlecancel}
+          newOffer={newOffer}
+          setNewOffer={setNewOffer}
+          onSave={handleSaveOffer}
+        />
       )}
     </div>
   );
