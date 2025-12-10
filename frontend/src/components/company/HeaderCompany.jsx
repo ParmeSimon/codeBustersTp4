@@ -1,10 +1,10 @@
 import { NavLink, useLocation } from "react-router-dom";
-import style from "../../../styles/Company.module.css";
-import Logo from "../../../assets/logo.png";
+import style from "../../styles/company.module.css";
+import Logo from "../../assets/logo.png";
 
 function HeaderCompany() {
   const location = useLocation();
-  
+
   // Le bouton "Offres" est actif si on est sur /entreprise/offres ou /entreprise/details-offre
   const isOffersActive = location.pathname === "/entreprise/offres" || location.pathname === "/entreprise/details-offre";
 

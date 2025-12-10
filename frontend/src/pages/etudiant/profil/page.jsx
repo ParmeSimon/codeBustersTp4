@@ -1,6 +1,6 @@
-import style from "../../styles/student.module.css";
+import style from '../../../styles/student.module.css';
 import { useState } from "react";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
@@ -10,10 +10,10 @@ import {
   BrowserIcon,
   Settings02Icon,
 } from "@hugeicons/core-free-icons";
-import PopupEditProfileStudent from "./widgets/PopupEditProfileStudent";
-import HeaderStudent from "./widgets/HeaderStudent";
+import PopupEditProfileStudent from "../../../components/student/PopupEditProfileStudent";
+import HeaderStudent from "../../../components/student/HeaderStudent";
 
-function StudentProfilePage() {
+function page() {
   const [showPopup, setShowPopup] = useState(false);
   const { logout } = useAuth();
   const navigate = useNavigate();
@@ -76,4 +76,4 @@ function StudentProfilePage() {
   );
 }
 
-export default StudentProfilePage;
+export default page;

@@ -1,4 +1,4 @@
-import style from "../../../styles/company.module.css";
+import style from "../../styles/company.module.css";
 
 const PopupDeleteOfferCompany = ({ onClose }) => {
   return (

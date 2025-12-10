@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import style from "../../../styles/student.module.css";
-import Logo from "../../../assets/logo.png";
+import style from "../../styles/student.module.css";
+import Logo from "../../assets/logo.png";
 
 function HeaderStudent() {
   return (

@@ -4,7 +4,7 @@ import LoadingSpinner from './LoadingSpinner';
 
 const ProtectedRoute = ({ children, requiredRole }) => {
   const { isAuthenticated, user, loading } = useAuth();
-
+  
   if (loading) {
     return <LoadingSpinner message="Vérification de l'authentification..." />;
   }
