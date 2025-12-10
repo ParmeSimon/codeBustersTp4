@@ -15,6 +15,7 @@ import StudentDetailsOfferPage from "./pages/etudiant/offres/[id]/page";
 import CompanyOffersPage from "./pages/entreprise/offres/page";
 import CompanyProfilePage from "./pages/entreprise/profil/page";
 import CompanyOfferDetailsPage from "./pages/entreprise/offres/[id]/page";
+import CompanyOfferApplicationsPage from "./pages/entreprise/offres/candidatures/page";
 
 import { OffersProvider } from "./hooks/useoffers";
 // Pages communes
