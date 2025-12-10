@@ -10,17 +10,11 @@ import { useParams } from 'react-router-dom';
 function page() {
     const { getOfferDetail, offerDetail } = useOffers()
     const { id } = useParams();
-    console.log('id', id);
 
     // Charger les détails de l'offre au montage
     useEffect(() => {
         getOfferDetail(id);
     }, [id]);
-
-    // Observer les changements de offerDetail
-    useEffect(() => {
-        console.log('COUCOU test getOfferDetail', offerDetail);
-    }, [offerDetail]);
 
     return (
         <div className={style.studentDetailsOffer}>
