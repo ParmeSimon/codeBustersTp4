@@ -1,6 +1,16 @@
 import style from "../../styles/company.module.css";
+import { useState } from "react";
 
-function PopupEditProfileCompany({ onClose }) {
+function PopupEditProfileCompany({ onClose, profile, handleSaveUpdateProfile }) {
+  const [formData, setFormData] = useState({
+    name: profile?.name,
+    location: profile?.location,
+    website: profile?.website,
+    description: profile?.description,
+  });
+
+  console.log(formData);
+
   return (
     <div className={style.popupOverlay} onClick={onClose}>
       <div className={style.popupCard} onClick={(e) => e.stopPropagation()}>
@@ -13,6 +23,8 @@ function PopupEditProfileCompany({ onClose }) {
               type="text"
               id="name"
               placeholder="Saisissez le nom de l'entreprise"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             />
           </div>
           {/* Localisation */}
@@ -22,6 +34,8 @@ function PopupEditProfileCompany({ onClose }) {
               type="text"
               id="localisation"
               placeholder="Saisissez la localisation de l'entreprise"
+              value={formData.location}
+              onChange={(e) => setFormData({ ...formData, location: e.target.value })}
             />
           </div>
           {/* Site Web */}
@@ -31,6 +45,8 @@ function PopupEditProfileCompany({ onClose }) {
               type="text"
               id="site"
               placeholder="Saisissez le site web de l'entreprise"
+              value={formData.website}
+              onChange={(e) => setFormData({ ...formData, website: e.target.value })}
             />
           </div>
           {/* Description */}
@@ -39,11 +55,13 @@ function PopupEditProfileCompany({ onClose }) {
             <textarea
               id="description"
               placeholder="Saisissez la description de l'entreprise"
+              value={formData.description}
+              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
             />
           </div>
           {/* Buttons */}
           <div className={style.popupActions}>
-            <button className={style.saveBtn}>Sauvegarder</button>
+            <button className={style.saveBtn} onClick={() => handleSaveUpdateProfile(formData)}>Sauvegarder</button>
             <button type="button" className={style.cancelBtn} onClick={onClose}>
               Annuler
             </button>
