@@ -1,0 +1,128 @@
+.company-profile {
+    width: 100%;
+    max-width: 1100px;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 24px;
+}
+
+.company-profile .profile-card {
+    background-color: #f4f4f4;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 40px 60px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    margin-top: 2%;
+    position: relative;
+}
+
+.company-profile .icon {
+    border: 2px solid var(--color-primary);
+    border-radius: 50%;
+    padding: 20px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.company-profile .profile-card button {
+    color: var(--color-secondary);
+    background-color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    border-radius: 100%;
+    font-size: 20px;
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    position: absolute;
+    right: 4%;
+    top: 10%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease,
+        border-color 0.3s ease, transform 0.3s ease;
+}
+
+.company-profile .profile-card button:hover {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+}
+
+/* Links CV / Github / Portfolio */
+.company-profile .profile-links {
+    width: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    gap: 16px;
+}
+
+.company-profile .profile-link {
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: none;
+    background: #f4f4f4;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-weight: 500;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Skills */
+.company-profile .skills-card {
+    width: 100%;
+    background: #f4f4f4;
+    padding: 20px 24px;
+    border-radius: 16px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.company-profile .skills-title {
+    margin-bottom: 12px;
+    border-left: 4px solid var(--color-primary);
+    padding-left: 8px;
+}
+
+.company-profile .skills-list {
+    display: grid;
+    grid-auto-flow: dense;
+    gap: 10px;
+}
+
+.company-profile .skill-tag {
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--color-primary);
+    font-size: 14px;
+}
+
+.company-profile .skill-tag:hover {
+    background-color: var(--color-primary);
+    color: #f4f4f4;
+}
+
+.disconnect-button {
+  background-color: var(--color-btn-primary);
+  color: var(--color-secondary);
+  border: none;
+  border-radius: 12px;
+  padding: 15px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.disconnect-button:hover {
+  background-color: #a47ac4;
+  transform: translateY(-2px);
+}
