@@ -1,0 +1,101 @@
+.company-profile {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.company-profile .profile-card {
+    background-color: #f4f4f4;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 40px 60px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    margin-top: 2%;
+    position: relative;
+}
+
+.company-profile .profile-card button {
+    color: var(--color-secondary);
+    background-color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    border-radius: 100%;
+    font-size: 20px;
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    position: absolute;
+    right: 4%;
+    top: 10%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease,
+        border-color 0.3s ease, transform 0.3s ease;
+}
+
+.company-profile .profile-card button:hover {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+}
+
+.company-profile .profile-card .icon {
+    border: 2px solid var(--color-primary);
+    border-radius: 50%;
+    padding: 20px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.company-profile .profile-links {
+    width: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    gap: 16px;
+}
+
+.company-profile .profile-links .profile-link {
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: none;
+    background: #f4f4f4;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-weight: 500;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 10px;
+}
+
+.company-profile .disconnect-button {
+    background-color: var(--color-btn-primary);
+    color: var(--color-secondary);
+    border:none;
+    border-radius: 12px;
+    padding: 10px 0;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.company-profile .disconnect-button:hover {
+  background-color: #a47ac4;
+  transform: translateY(-2px);
+}
+
+@media screen and (max-width: 768px) {
+    .company-profile .profile-links {
+        display: flex;
+        flex-direction: column;
+    }
+}

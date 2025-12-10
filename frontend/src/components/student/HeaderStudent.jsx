@@ -1,18 +1,18 @@
 import { NavLink } from "react-router-dom";
-import style from "../../styles/student.module.css";
+import "../../styles/components/student/headerStudent.css";
 import Logo from "../../assets/logo.png";
 
 function HeaderStudent() {
   return (
     <header>
       <img src={Logo} />
-      <nav className={style.nav}>
+      <nav className="nav">
         <ul>
           <li>
             <NavLink
               to="/etudiant/profil"
               className={({ isActive }) =>
-                `${style.navLink} ${isActive ? style.activeLink : ""}`
+                `nav-link ${isActive ? "active-link" : ""}`
               }
             >
               Profil
@@ -22,7 +22,7 @@ function HeaderStudent() {
             <NavLink
               to="/etudiant/offres"
               className={({ isActive }) =>
-                `${style.navLink} ${isActive ? style.activeLink : ""}`
+                `nav-link ${isActive ? "active-link" : ""}`
               }
             >
               Offres

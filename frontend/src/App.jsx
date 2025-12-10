@@ -15,8 +15,10 @@ import StudentDetailsOfferPage from "./pages/etudiant/offres/[id]/page";
 import CompanyOffersPage from "./pages/entreprise/offres/page";
 import CompanyProfilePage from "./pages/entreprise/profil/page";
 import CompanyOfferDetailsPage from "./pages/entreprise/offres/[id]/page";
+import CompanyOfferApplicationsPage from "./pages/entreprise/offres/candidatures/page";
 
 import { OffersProvider } from "./hooks/useoffers";
+import { SnackbarProvider } from "notistack";
 // Pages communes
 // import Home from './pages/Home';
 
@@ -54,27 +56,27 @@ function AppRoutes() {
           <Route
             path="/etudiant/profil"
             element={
-              // <ProtectedRoute requiredRole="STUDENT">
-              <StudentProfilePage />
-              // </ProtectedRoute>
+              <ProtectedRoute requiredRole="STUDENT">
+                <StudentProfilePage />
+              </ProtectedRoute>
             }
           />
 
           <Route
             path="/etudiant/offres"
             element={
-              // <ProtectedRoute requiredRole="STUDENT">
-              <StudentOffersPage />
-              // </ProtectedRoute>
+              <ProtectedRoute requiredRole="STUDENT">
+                <StudentOffersPage />
+              </ProtectedRoute>
             }
           />
 
           <Route
             path="/etudiant/offres/:id"
             element={
-              // <ProtectedRoute requiredRole="STUDENT">
-              <StudentDetailsOfferPage />
-              // </ProtectedRoute>
+              <ProtectedRoute requiredRole="STUDENT">
+                <StudentDetailsOfferPage />
+              </ProtectedRoute>
             }
           />
 
@@ -85,38 +87,38 @@ function AppRoutes() {
           <Route
             path="entreprise/profil"
             element={
-              // <ProtectedRoute requiredRole="COMPANY">
-              <CompanyProfilePage />
-              // </ProtectedRoute>
+              <ProtectedRoute requiredRole="COMPANY">
+                <CompanyProfilePage />
+              </ProtectedRoute>
             }
           />
 
           <Route
             path="entreprise/offres"
             element={
-              // <ProtectedRoute requiredRole="COMPANY">
-              <CompanyOffersPage />
-              // </ProtectedRoute>
+              <ProtectedRoute requiredRole="COMPANY">
+                <CompanyOffersPage />
+              </ProtectedRoute>
             }
           />
 
           <Route
             path="entreprise/offres/:id"
             element={
-              // <ProtectedRoute requiredRole="COMPANY">
-              <CompanyOfferDetailsPage />
-              // </ProtectedRoute>
+              <ProtectedRoute requiredRole="COMPANY">
+                <CompanyOfferDetailsPage />
+              </ProtectedRoute>
             }
           />
 
-          {<Route
+          <Route
             path="entreprise/offres/candidatures/:id"
             element={
-              // <ProtectedRoute requiredRole="COMPANY">
-              <CompanyOfferApplicationsPage />
-              // </ProtectedRoute>
+              <ProtectedRoute requiredRole="COMPANY">
+                <CompanyOfferApplicationsPage />
+              </ProtectedRoute>
             }
-          />}
+          />
 
           {/* ... */}
 
@@ -154,7 +156,9 @@ function App() {
     <Router>
       <AuthProvider>
         <OffersProvider>
-          <AppRoutes />
+          <SnackbarProvider maxSnack={3} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
+            <AppRoutes />
+          </SnackbarProvider>
         </OffersProvider>
       </AuthProvider>
     </Router>
