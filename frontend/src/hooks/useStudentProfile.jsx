@@ -21,15 +21,13 @@ function useStudentProfile() {
     }, []);
 
     const updateProfile = async (partial) => {
-    // On envoie *au moins* les champs attendus par l’API
     const payload = {
-      ...profile,   // garde ce qui existe déjà (id, email, etc.)
-      ...partial,   // écrase seulement ce qui a été modifié
+      ...profile,
+      ...partial,
     };
 
     await studentService.updateProfile(payload);
 
-    // 🔥 On met à jour le state local direct avec le payload
     setProfile(payload);
   };
 

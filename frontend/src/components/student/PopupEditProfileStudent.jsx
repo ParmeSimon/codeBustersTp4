@@ -5,40 +5,54 @@ import { Cancel01Icon } from "@hugeicons/core-free-icons";
 
 function PopupEditProfileStudent({ profile, onSave, onClose }) {
 
-  const [name, setName] = useState(profile?.name ?? "");
-  const [cvLink, setCvLink] = useState(profile?.cvLink ?? "");
-  const [githubLink, setGithubLink] = useState(profile?.githubLink ?? "");
-  const [portfolioLink, setPortfolioLink] = useState(profile?.portfolioLink ?? "");
-  const [skills, setSkills] = useState(profile?.skills ?? []);
-  const [skillInput, setSkillInput] = useState("");
+  const [profileData, setProfileData] = useState({
+    name: "",
+    cvLink: "",
+    githubLink: "",
+    portfolioLink: "",
+    skills: [],
+  })
 
   useEffect(() => {
-    setName(profile?.name ?? "");
-    setCvLink(profile?.cvLink ?? "");
-    setGithubLink(profile?.githubLink ?? "");
-    setPortfolioLink(profile?.portfolioLink ?? "");
-    setSkills(profile?.skills ?? []);
+    setProfileData({
+      name: profile?.name ?? "",
+      cvLink: profile?.cvLink ?? "",
+      githubLink: profile?.githubLink ?? "",
+      portfolioLink: profile?.portfolioLink ?? "",
+      skills: profile?.skills ?? [],
+    });
   }, [profile]);
+
+  const handleFieldChange = (field, value) => {
+    setProfileData((prev) => ({ ...prev, [field]: value }));
+  };
 
   const handleAddSkill = (e) => {
     e.preventDefault();
-    const value = skillInput.trim();
-    if (!value || skills.includes(value)) return;
-    setSkills([...skills, value]);
-    setSkillInput("");
+    const value = profileData._skillInput?.trim();
+    if (!value || profileData.skills.includes(value)) return;
+
+    setProfileData((prev) => ({
+      ...prev,
+      skills: [...prev.skills, value],
+      _skillInput: "",
+    }));
   };
 
   const handleRemoveSkill = (skillToRemove) => {
-    setSkills(skills.filter((s) => s !== skillToRemove));
+    setProfileData((prev) => ({
+      ...prev,
+      skills: prev.skills.filter((s) => s !== skillToRemove),
+    }));
   };
 
   const handleSave = async () => {
     const payload = {
-      name,
-      cvLink,
-      githubLink,
-      portfolioLink,
-      skills,
+      name: profileData.name,
+      cvLink: profileData.cvLink,
+      githubLink: profileData.githubLink,
+      portfolioLink: profileData.portfolioLink,
+      skills: profileData.skills,
     };
 
     await onSave(payload);
@@ -53,31 +67,33 @@ function PopupEditProfileStudent({ profile, onSave, onClose }) {
           {/* Name */}
           <div className="form-group">
             <label htmlFor="name">Nom</label>
-            <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)}/>
+            <input type="text" id="name" value={profileData.name} onChange={(e) => handleFieldChange("name", e.target.value)}/>
           </div>
           {/* CV */}
           <div className="form-group">
             <label htmlFor="cv">CV</label>
-            <input type="text" id="cv" value={cvLink} onChange={(e) => setCvLink(e.target.value)}/>
+            <input type="text" id="cv" value={profileData.cvLink} onChange={(e) => handleFieldChange("cvLink", e.target.value)}/>
           </div>
           {/* Github */}
           <div className="form-group">
             <label htmlFor="github">Github</label>
-            <input type="text" id="github" value={githubLink} onChange={(e) => setGithubLink(e.target.value)}/>
+            <input type="text" id="github" value={profileData.githubLink} onChange={(e) => handleFieldChange("githubLink", e.target.value)}/>
           </div>
           {/* Portfolio */}
           <div className="form-group">
             <label htmlFor="portfolio">Portfolio</label>
-            <input type="text" id="portfolio" value={portfolioLink} onChange={(e) => setPortfolioLink(e.target.value)}/>
+            <input type="text" id="portfolio" value={profileData.portfolioLink} onChange={(e) => handleFieldChange("portfolioLink", e.target.value)}/>
           </div>
           {/* Skills */}
           <div className="form-group">
             <label htmlFor="skills">Compétences</label>
-            <input type="text" id="skills" value={skillInput} placeholder="Veuillez rentrer une compétence" onChange={(e) => setSkillInput(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleAddSkill(e)} />
+            <input type="text" id="skills" value={profileData._skillInput ?? ""} placeholder="Veuillez rentrer une compétence" onChange={(e) =>
+                setProfileData((prev) => ({ ...prev, _skillInput: e.target.value }))
+              }
+            onKeyDown={(e) => e.key === "Enter" && handleAddSkill(e)}/>
           </div>
           <div className="list-skills">
-            {skills.map((skill) => (
+            {profileData.skills.map((skill) => (
               <span key={skill} className="span-skill">{skill}<button type="button" onClick={() => handleRemoveSkill(skill)}><HugeiconsIcon icon={Cancel01Icon} size={16}/></button></span>
             ))}
           </div>
