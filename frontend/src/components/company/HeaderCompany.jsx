@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from "react-router-dom";
-import style from "../../styles/company.module.css";
+import "../../styles/components/company/headerCompany.css";
 import Logo from "../../assets/logo.png";
 
 function HeaderCompany() {
@@ -11,13 +11,13 @@ function HeaderCompany() {
   return (
     <header>
       <img src={Logo} />
-      <nav className={style.nav}>
+      <nav className="nav">
         <ul>
           <li>
             <NavLink
               to="/entreprise/profil"
               className={({ isActive }) =>
-                `${style.navLink} ${isActive ? style.activeLink : ""}`
+                `navLink ${isActive ? "activeLink" : ""}`
               }
             >
               Profil
@@ -27,7 +27,7 @@ function HeaderCompany() {
             <NavLink
               to="/entreprise/offres"
               className={() =>
-                `${style.navLink} ${isOffersActive ? style.activeLink : ""}`
+                `navLink ${isOffersActive ? "activeLink" : ""}`
               }
             >
               Offres

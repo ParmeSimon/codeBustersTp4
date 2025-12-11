@@ -2,6 +2,8 @@ import "../../styles/components/offers/style.css";
 import LoadingSpinner from "../LoadingSpinner";
 import { useNavigate } from "react-router-dom";
 import { Tag } from "./tag";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Delete02Icon } from "@hugeicons/core-free-icons";
 
 export default function ShowOffers({ offers, loading, isStudent, isCompany, applications = [], onDeleteApplication }) {
     const navigate = useNavigate();
@@ -61,7 +63,7 @@ export default function ShowOffers({ offers, loading, isStudent, isCompany, appl
                                                         onClick={() => onDeleteApplication(getApplicationId(offer.id))}
                                                         title="Supprimer la candidature"
                                                     >
-                                                        🗑️
+                                                        <HugeiconsIcon icon={Delete02Icon} size={20} />
                                                     </button>
                                                 </div>
                                             ) : (

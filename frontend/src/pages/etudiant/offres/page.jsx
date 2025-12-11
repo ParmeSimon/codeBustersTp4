@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import style from '../../../styles/student.module.css';
+import '../../../styles/pages/student/offers/style.css';
 import HeaderStudent from "../../../components/student/HeaderStudent";
 import { useOffers } from "../../../hooks/useoffers";
 import { useAuth } from "../../../hooks/useAuth";
@@ -20,10 +19,16 @@ function page() {
   const { isStudent, isCompany } = useAuth();
   const { getApplications, deleteApplication } = useStudentProfile();
   const { enqueueSnackbar } = useSnackbar();
+  const [filteredOffers, setFilteredOffers] = useState([]);
   const [applications, setApplications] = useState([]);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [applicationToDelete, setApplicationToDelete] = useState(null);
-  // Charger les offres dès l'entrée sur la page
+  const [filters, setFilters] = useState({
+    search: '',
+    contractType: '',
+    location: '',
+    applied: ''
+  });
   useEffect(() => {
     getAllOffers();
   }, []);
@@ -61,38 +66,58 @@ function page() {
     setShowDeletePopup(false);
     setApplicationToDelete(null);
   };
+  useEffect(() => {
+    const filteredOffers = offers.filter((offer) => {
+      const matchesSearch = filters.search === '' || 
+      offer.title.toLowerCase().includes(filters.search.toLowerCase())
 
+      const matchesContractType = filters.contractType === '' ||
+        offer.contractType === filters.contractType;
+
+      const matchesLocation = filters.location === '' ||
+        offer.location.toLowerCase().includes(filters.location.toLowerCase());
+
+      const isApplied = applications.some(app => app.offerId === offer.id);
+      const matchesApplied = filters.applied === '' ||
+        (filters.applied === 'Mes candidatures' && isApplied) ||
+        (filters.applied === 'Pas candidater' && !isApplied);
+
+      // Retourner true seulement si tous les filtres correspondent
+      return matchesSearch && matchesContractType && matchesLocation && matchesApplied;
+    });
+    setFilteredOffers(filteredOffers);
+  }, [filters, offers, applications]);
   return (
-    <div className={style.studentOffer}>
+    <div className="studentOffer">
       <HeaderStudent />
 
       {/* Filters */}
-      <form className={style.form}>
+      <form className="form">
         {/* Search */}
-        <div className={style.inputWrapper}>
-          <input type="search" placeholder="Rechercher un poste" className={style.formSearch} />
+        <div className="inputWrapper">
+          <input type="search" placeholder="Rechercher un poste" className="formSearch" value={filters.search} onChange={(e) => setFilters({ ...filters, search: e.target.value })} />
           <HugeiconsIcon icon={Search01Icon} />
         </div>
-        <div className={style.subfilter}>
+        <div className="subfilter">
           {/* Type de contrat */}
-          <select>
-            <option>Type de contrat</option>
-            <option>STAGE</option>
-            <option>ALTERNANCE</option>
-            <option>CDI</option>
-            <option>CDD</option>
+          <select value={filters.contractType} onChange={(e) => setFilters({ ...filters, contractType: e.target.value })}>
+            <option value="">Type de contrat</option>
+            <option value="STAGE">STAGE</option>
+            <option value="ALTERNANCE">ALTERNANCE</option>
+            <option value="CDI">CDI</option>
+            <option value="CDD">CDD</option>
           </select>
 
           {/* Mes candidatures ou non */}
-          <select>
-            <option>Toutes</option>
-            <option>Mes candidatures</option>
-            <option>Pas candidater</option>
+          <select value={filters.applied} onChange={(e) => setFilters({ ...filters, applied: e.target.value })}>
+            <option value="">Toutes</option>
+            <option value="Mes candidatures">Mes candidatures</option>
+            <option value="Pas candidater">Pas candidater</option>
           </select>
 
           {/* Localisation */}
-          <div className={style.inputWrapper}>
-            <input type="search" placeholder="Localisation" className={style.localisation} />
+          <div className="inputWrapper">
+            <input type="search" placeholder="Localisation" className="localisation" value={filters.location} onChange={(e) => setFilters({ ...filters, location: e.target.value })} />
             <HugeiconsIcon icon={Location06Icon} />
           </div>
         </div>
@@ -100,7 +125,7 @@ function page() {
 
       {/* Offers */}
       <ShowOffers
-        offers={offers}
+        offers={filteredOffers}
         loading={loading}
         isStudent={isStudent}
         isCompany={isCompany}
