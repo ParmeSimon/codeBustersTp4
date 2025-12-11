@@ -1,0 +1,63 @@
+.student-offer {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    position: relative;
+}
+
+.student-offer .form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.student-offer .form .inputWrapper {
+  border: 2px solid var(--color-primary);
+  border-radius: 10px;
+  background-color: var(--color-secondary);
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.student-offer .formSearch {
+  width: 550px;
+  border: none;
+  background-color: var(--color-secondary);
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.student-offer .formSearch:focus,
+.student-offer .subfilter input:focus {
+  outline: none;
+}
+
+.student-offer .subfilter {
+  display: flex;
+  gap: 20px;
+}
+
+.student-offer .subfilter input {
+  border: none;
+  background-color: var(--color-secondary);
+}
+
+.student-offer .subfilter select {
+  width: 250px;
+  border: 2px solid var(--color-primary);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.student-offer .subfilter select:focus {
+  outline: none;
+}

@@ -1,0 +1,157 @@
+.company-details-offer {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.company-details-offer .card {
+    background-color: var(--color-secondary);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 40px 60px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    margin-top: 2%;
+}
+
+.company-details-offer .card .header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.company-details-offer .card .main {
+    background-color: var(--color-secondary);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+.company-details-offer .card .main img {
+    height: 100px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.company-details-offer .card .main .detail {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.company-details-offer .card .main .contract,
+.company-details-offer .card .main .localisation {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.company-details-offer .card .cards {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    gap: 10px;
+}
+
+.company-details-offer .card .cards .description {
+    width: 50%;
+    background-color: var(--color-secondary);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.company-details-offer .card .cards .cardKeywords {
+    width: 50%;
+    background-color: var(--color-secondary);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.company-details-offer .card .cards .cardKeywords .keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+}
+
+.company-details-offer .card .cards .cardKeywords .keywords p {
+    padding: 6px 16px;
+    border: 2px solid var(--color-primary);
+    border-radius: 10px;
+}
+
+.company-details-offer .card .cards h4 {
+    border-left: 4px solid var(--color-primary);
+    padding-left: 8px;
+}
+
+.company-details-offer .card .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.company-details-offer .card .actions .modify-btn {
+    flex: 1;
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.company-details-offer .card .actions .delete-btn {
+    flex: 1;
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    border-radius: 10px;
+    padding: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.company-details-offer .card .actions .modify-btn:hover {
+    background-color: #a47ac4;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(164, 122, 196, 0.4);
+}
+
+.company-details-offer .card .actions .delete-btn:hover {
+    background-color: rgba(180, 151, 205, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(180, 151, 205, 0.3);
+}
+
+@media (max-width: 768px) {
+  .company-details-offer .card {
+    padding: 24px 16px;
+  }
+
+  .company-details-offer .card .cards {
+    flex-direction: column;   /* ⬅️ au lieu de côte à côte */
+    align-items: stretch;
+  }
+
+  .company-details-offer .card .cards .description,
+  .company-details-offer .card .cards .cardKeywords {
+    width: 100%;              /* ⬅️ plein largeur */
+  }
+}

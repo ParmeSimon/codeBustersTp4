@@ -111,7 +111,7 @@
     color: var(--color-secondary);
     border:none;
     border-radius: 12px;
-    padding: 15px;
+    padding: 10px 0;
     width: 100%;
     font-size: 16px;
     font-weight: 500;
@@ -122,4 +122,11 @@
 .student-profile .disconnect-btn:hover {
     background-color: #a47ac4;
     transform: translateY(-2px);
+}
+
+@media screen and (max-width: 768px) {
+    .company-profile .profile-links {
+        display: flex;
+        flex-direction: column;
+    }
 }
