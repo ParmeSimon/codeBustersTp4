@@ -3,15 +3,6 @@ import { ArrowLeft01Icon, WorkIcon, Location06Icon } from "@hugeicons/core-free-
 import { useNavigate } from "react-router-dom";
 import "../../styles/components/offers/offer.css";
 
-/**
- * Composant réutilisable pour afficher les détails d'une offre
- * @param {Object} offer - Les données de l'offre
- * @param {string} userType - Type d'utilisateur: 'student' ou 'company'
- * @param {Function} onApply - Fonction appelée lors du clic sur "Postuler" (pour étudiant)
- * @param {Function} onModify - Fonction appelée lors du clic sur "Modifier" (pour entreprise)
- * @param {Function} onDelete - Fonction appelée lors du clic sur "Supprimer" (pour entreprise)
- * @param {string} backUrl - URL de retour pour le bouton retour
- */
 export const Offer = ({
     offer,
     userType = 'student',
