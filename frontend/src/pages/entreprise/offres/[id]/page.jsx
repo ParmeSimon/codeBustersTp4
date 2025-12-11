@@ -22,7 +22,7 @@ function CompanyOfferDetailsPage() {
     getOfferDetail(id).then((response) => {
       setOffer(response);
     });
-  }, [id]);
+  }, [id]);git
 
   const validateDeleteOffer = async () => {
     const response = await deleteOffer(id);
@@ -76,9 +76,7 @@ function CompanyOfferDetailsPage() {
         offer={offer}
         userType="company"
         style={style}
-        onModify={handleModify}
-        onDelete={handleDelete}
-        backUrl="/entreprise/offres"
+rl="/entreprise/offres"
       />
 
       {/* Popups */}
