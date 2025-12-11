@@ -1,4 +1,4 @@
-import style from "../../styles/company.module.css";
+import "../../styles/components/company/popupEditProfileCompany.css";
 import { useState } from "react";
 
 function PopupEditProfileCompany({ onClose, profile, handleSaveUpdateProfile }) {
@@ -10,12 +10,12 @@ function PopupEditProfileCompany({ onClose, profile, handleSaveUpdateProfile }) 
   });
 
   return (
-    <div className={style.popupOverlay} onClick={onClose}>
-      <div className={style.popupCard} onClick={(e) => e.stopPropagation()}>
+    <div className="popupOverlay" onClick={onClose}>
+      <div className="popupCard" onClick={(e) => e.stopPropagation()}>
         <h2>Modifier le profil</h2>
         <form onSubmit={(e) => e.preventDefault()}>
           {/* Name */}
-          <div className={style.formGroup}>
+          <div className="formGroup">
             <label htmlFor="name">Nom</label>
             <input
               type="text"
@@ -26,7 +26,7 @@ function PopupEditProfileCompany({ onClose, profile, handleSaveUpdateProfile }) 
             />
           </div>
           {/* Localisation */}
-          <div className={style.formGroup}>
+          <div className="formGroup">
             <label htmlFor="localisation">Localisation</label>
             <input
               type="text"
@@ -37,7 +37,7 @@ function PopupEditProfileCompany({ onClose, profile, handleSaveUpdateProfile }) 
             />
           </div>
           {/* Site Web */}
-          <div className={style.formGroup}>
+          <div className="formGroup">
             <label htmlFor="site">Site Web</label>
             <input
               type="text"
@@ -48,7 +48,7 @@ function PopupEditProfileCompany({ onClose, profile, handleSaveUpdateProfile }) 
             />
           </div>
           {/* Description */}
-          <div className={style.formGroup}>
+          <div className="formGroup">
             <label htmlFor="description">Description</label>
             <textarea
               id="description"
@@ -58,9 +58,9 @@ function PopupEditProfileCompany({ onClose, profile, handleSaveUpdateProfile }) 
             />
           </div>
           {/* Buttons */}
-          <div className={style.popupActions}>
-            <button className={style.saveBtn} onClick={() => handleSaveUpdateProfile(formData)}>Sauvegarder</button>
-            <button type="button" className={style.cancelBtn} onClick={onClose}>
+          <div className="popupActions">
+            <button className="saveBtn" onClick={() => handleSaveUpdateProfile(formData)}>Sauvegarder</button>
+            <button type="button" className="cancelBtn" onClick={onClose}>
               Annuler
             </button>
           </div>
