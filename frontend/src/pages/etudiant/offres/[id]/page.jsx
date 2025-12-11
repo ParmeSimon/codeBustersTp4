@@ -1,4 +1,4 @@
-import style from '../../../../styles/student.module.css';
+import "../../../../styles/pages/student/offer-details/style.css";
 import HeaderStudent from '../../../../components/student/HeaderStudent';
 import { Offer } from '../../../../components/offers/offer';
 import { useOffers } from '../../../../hooks/useoffers';
@@ -47,19 +47,18 @@ function StudentOfferDetailsPage() {
     // Afficher un loader si les données ne sont pas encore chargées
     if (loading || !offer) {
         return (
-            <div className={style.studentDetailsOffer}>
+            <div className="studentDetailsOffer">
                 <HeaderStudent />
                 <p>Chargement...</p>
             </div>
         );
     }
     return (
-        <div className={style.studentDetailsOffer}>
+        <div className="studentDetailsOffer">
             <HeaderStudent />
             <Offer
                 offer={offer}
                 userType="student"
-                style={style}
                 onApply={handleApply}
                 backUrl="/etudiant/offres"
             />
