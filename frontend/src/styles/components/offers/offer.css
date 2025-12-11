@@ -1,0 +1,114 @@
+.card-offer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 22px;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 1100px;
+    padding: 40px;
+}
+
+.card-offer .header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.card-offer .main {
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card-offer .main img {
+    height: 150px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.card-offer .main .detail {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    padding: 12px;
+}
+
+.card-offer .main .detail .contract, .card-offer .main .detail .localisation {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card-offer .cards {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+
+.card-offer .cards .description, .card-offer .cards .cardKeywords {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.card-offer .cards h4 {
+    margin-bottom: 12px;
+    border-left: 4px solid var(--color-primary);
+    padding-left: 8px;
+}
+
+.card-offer .cards .cardKeywords .keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+} 
+
+.card-offer .cards .cardKeywords .keywords p {
+    padding: 6px 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    border: 2px solid var(--color-primary);
+    cursor: pointer;
+}
+
+.card-offer .cards .cardKeywords .keywords p:hover {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+}
+
+.card-offer .application {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    border: 2px solid var(--color-primary);
+    border-radius: 12px;
+    padding: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+    width: 100%
+}
+
+.card-offer .application:hover {
+    background: #a47ac4;
+    border-color: #a47ac4;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(164, 122, 196, 0.4);
+}
+
+@media screen and (max-width: 768px) {
+    .card-offer .cards {
+        flex-direction: column;
+    }
+}
