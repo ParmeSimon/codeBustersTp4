@@ -1,5 +1,5 @@
 import HeaderCompany from "../../../../components/company/HeaderCompany";
-import style from '../../../../styles/company.module.css';
+import '../../../../styles/pages/company/offer-details/style.css';
 import { Offer } from "../../../../components/offers/offer";
 import PopupUpdateOfferCompany from "../../../../components/company/PopupUpdateOfferCompany";
 import PopupDeleteOfferCompany from "../../../../components/company/PopupDeleteOfferCompany";
@@ -61,7 +61,7 @@ function CompanyOfferDetailsPage() {
   // Afficher un loader si les données ne sont pas encore chargées
   if (!offer) {
     return (
-      <div className={style.companyDetailsOffer}>
+      <div className="companyDetailsOffer">
         <HeaderCompany />
         <p>Chargement...</p>
       </div>
@@ -69,13 +69,12 @@ function CompanyOfferDetailsPage() {
   }
 
   return (
-    <div className={style.companyDetailsOffer}>
+    <div className="companyDetailsOffer">
       <HeaderCompany />
 
       <Offer
         offer={offer}
         userType="company"
-        style={style}
         onModify={handleModify}
         onDelete={handleDelete}
         backUrl="/entreprise/offres"
